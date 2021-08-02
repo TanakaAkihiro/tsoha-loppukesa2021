@@ -1,0 +1,15 @@
+.header {
+    margin: auto;
+    padding-left: 35%;
+    padding-top: 3%;
+    color: red;
+    background-color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 100px;
+    height: 200px;
+}
+
+body {
+    margin:auto;
+    background-color: chartreuse;
+}
