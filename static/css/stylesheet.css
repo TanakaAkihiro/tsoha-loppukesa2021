@@ -1,6 +1,5 @@
 .header {
-    margin: auto;
-    padding-left: 35%;
+    text-align: center;
     padding-top: 3%;
     color: red;
     background-color: black;
@@ -9,7 +8,43 @@
     height: 200px;
 }
 
+.login {
+    margin: auto;
+    width: 50%;
+    color: black;
+    font-size: 30px;
+    padding-top: 200px;
+    padding-left: 470px;
+    padding-bottom: 20px;
+}
+
+.loginbutton {
+    color: green;
+    box-sizing: 30px;
+    margin: auto;
+    cursor: pointer;
+    width: 100%;
+    max-width: max-content;
+}
+
 body {
     margin:auto;
     background-color: chartreuse;
+}
+
+input[type=text], input[type=password] {
+    width: 50%;
+    padding: 20px 40px;
+    margin: auto;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+
+button {
+    border-radius: .1em;
+    background-color: green;
+    color: black;
+    font-size: 20px;
 }
