@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, request, redirect
-import messages, users
+#import messages, users
 
 @app.route("/")
 def index():
