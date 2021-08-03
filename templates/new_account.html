@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewpoint" content="width=device-width", initial-scale=1>
+        <title>Chatmate</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css')}}">
+    </head>
+    <body>
+        <div class="header">
+            Chatmate
+        </div>
+        <form action="/create_account" method="POST" onsubmit="return check(this)">
+            <div class="username">
+                <input type="text" placeholder="Uusi käyttäjätunnus" name="username" required>
+            </div>
+            <div class="password">
+                <input type="password" placeholder="Uusi salasana" name="password" required>
+            </div>
+            <div class="password_2">
+                <input type="password" placeholder="Salasana uudestaan" name="password_2" required>
+            </div>
+            <div class="role">
+            <p>Käyttäjärooli: 
+            <select name="role">
+                <option value="1">Käyttäjä</option>
+                <option value="2">Ylläpitäjä</option>
+            </select></p>
+            </div>
+            <div class="create_button">
+                <button type="submit">Luo tunnus</button>
+            </div>
+        </form>
+    <script>
+        function check(form) {
+            if (form.password.value != form.password_2.value) {
+                alert("Salasanat eroavat toisistaan")
+                return false;
+            }
+            return true;
+        }
+    </script>
+    </body>
+</html>
