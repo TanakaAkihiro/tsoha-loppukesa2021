@@ -4,3 +4,11 @@ CREATE TABLE users (
     password TEXT,
     role INTEGER
 );
+
+CREATE TABLE threads (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users,
+    topic TEXT,
+    created_at TIMESTAMP,
+    visible BOOLEAN
+);

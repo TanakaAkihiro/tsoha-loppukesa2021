@@ -10,7 +10,10 @@
         <div class="header">
             Chatmate
         </div>
-        <div class="error">
-            Virhe: {{error}}
-        </div>
+        <form action="/create_thread" method="POST">
+            Syötä aihe: <br>
+            <textarea name="topic" cols="30" rows="2"></textarea> <br>
+            <button type="submit">Luo uusi keskustelu</button>
+        </form>
     </body>
+</html>

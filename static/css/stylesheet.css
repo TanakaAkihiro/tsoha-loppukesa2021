@@ -3,8 +3,16 @@
     box-sizing: 30px;
     margin: auto;
     cursor: pointer;
-    width: 100%;
     max-width: max-content;
+}
+
+.error  {
+    color: red;
+    margin: auto;
+    max-width: max-content;
+    font-size: 50px;
+    padding-top: 50px;
+    text-decoration: underline;
 }
 
 .header {
@@ -22,7 +30,6 @@
     box-sizing: 30px;
     margin: auto;
     cursor: pointer;
-    width: 100%;
     max-width: max-content;
 }
 
