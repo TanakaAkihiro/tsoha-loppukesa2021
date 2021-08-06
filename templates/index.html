@@ -20,6 +20,9 @@
         Luotu: {{thread.created_at.strftime("%Y-%m-%d %H:%M:%S")}} <br>
         Luoja: {{thread.username}} <br>
         <a href="/thread/{{thread.id}}">Siirry keskusteluun</a>
+        {% if thread.username == session.username or thread.role == 2 %}
+        | <a href="/thread_delete">Poista keskusteluketju</a>
+        {% endif %}
         <hr>
         {% endif %}
         {% endfor %}

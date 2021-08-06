@@ -2,7 +2,7 @@ from db import db
 import users
 
 def get_list():
-    sql = """SELECT T.id, T.topic, U.username, T.created_at, T.visible FROM threads T, users U 
+    sql = """SELECT T.id, T.topic, T.created_at, T.visible, U.username, U.role FROM threads T, users U 
             WHERE T.user_id=U.id ORDER BY T.id"""
     result = db.session.execute(sql)
     return result.fetchall()
