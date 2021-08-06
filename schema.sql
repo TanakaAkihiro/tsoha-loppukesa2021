@@ -12,3 +12,12 @@ CREATE TABLE threads (
     created_at TIMESTAMP,
     visible BOOLEAN
 );
+
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users,
+    thread_id INTEGER REFERENCES users,
+    content TEXT,
+    created_at TIMESTAMP,
+    visible BOOLEAN
+);

@@ -1,8 +1,7 @@
 from logging import error
 from app import app
 from flask import render_template, request, redirect, session
-import users, threads
-#import messages
+import users, threads, messages
 
 @app.route("/")
 def index():
@@ -51,3 +50,8 @@ def delete_thread(id):
     if threads.delete(id, session["user_id"], session["user_role"]):
         return redirect("/")
     return render_template("error.html", error="Keskusteluketjun poistaminen epäonnistui")
+
+@app.route("/thread/<int:id>")
+def thread(id):
+    list = messages.get_list(id)
+    return render_template("thread.html", messages=list, thread=threads.topic(id))
