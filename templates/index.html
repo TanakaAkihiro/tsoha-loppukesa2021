@@ -21,7 +21,7 @@
         Luoja: {{thread.username}} <br>
         <a href="/thread/{{thread.id}}">Siirry keskusteluun</a>
         {% if thread.username == session.username or thread.role == 2 %}
-        | <a href="/thread_delete">Poista keskusteluketju</a>
+        | <a href="/delete_thread/{{thread.id}}">Poista keskusteluketju</a>
         {% endif %}
         <hr>
         {% endif %}

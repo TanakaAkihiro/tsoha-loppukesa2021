@@ -15,3 +15,13 @@ def create(user_id, topic):
     except:
         return False
     return True
+
+def delete(id, user_id, user_role):
+    sql = "SELECT user_id FROM threads WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    if result.fetchone().user_id == user_id or user_role == 2:
+        sql = "UPDATE threads SET visible = false WHERE id=:id"
+        db.session.execute(sql, {"id":id})
+        db.session.commit()
+        return True
+    return False

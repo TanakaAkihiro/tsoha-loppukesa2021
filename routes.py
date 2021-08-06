@@ -45,4 +45,9 @@ def create_thread():
     if threads.create(session["user_id"], topic):
         return redirect("/")
     return render_template("error.html", error="Uuden keskustelun luominen epäonnistui")
-    
+
+@app.route("/delete_thread/<int:id>", methods=["GET", "POST"])
+def delete_thread(id):
+    if threads.delete(id, session["user_id"], session["user_role"]):
+        return redirect("/")
+    return render_template("error.html", error="Keskusteluketjun poistaminen epäonnistui")
