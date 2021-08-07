@@ -14,9 +14,7 @@
         <div class="thread">
             {{thread.topic}}
         </div>
-        <a href="/new_message">Kirjoita uusi viesti</a> |
-
-
+        <a href="/new_message/{{thread.id}}">Kirjoita uusi viesti</a> |
         <a href="/logout">Kirjaudu ulos</a>
         <hr>
         {% for message in messages %}

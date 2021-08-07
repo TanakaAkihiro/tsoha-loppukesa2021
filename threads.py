@@ -27,5 +27,5 @@ def delete(id, user_id, user_role):
     return False
 
 def topic(id):
-    sql = "SELECT topic FROM threads WHERE id=:id"
+    sql = "SELECT id, topic FROM threads WHERE id=:id"
     return db.session.execute(sql, {"id":id}).fetchone()
