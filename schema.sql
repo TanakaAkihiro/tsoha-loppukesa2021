@@ -16,7 +16,7 @@ CREATE TABLE threads (
 CREATE TABLE messages (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users,
-    thread_id INTEGER REFERENCES users,
+    thread_id INTEGER REFERENCES threads,
     content TEXT,
     created_at TIMESTAMP,
     visible BOOLEAN

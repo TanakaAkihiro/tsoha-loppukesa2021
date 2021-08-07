@@ -55,3 +55,14 @@ def delete_thread(id):
 def thread(id):
     list = messages.get_list(id)
     return render_template("thread.html", messages=list, thread=threads.topic(id))
+
+@app.route("/new_message/<int:thread_id>")
+def new_message(thread_id):
+    return render_template("new_message.html", thread=threads.topic(thread_id))
+
+@app.route("/create_message/<int:thread_id>", methods=["POST"])
+def create_message(thread_id):
+    content = request.form["content"]
+    if messages.create(session["user_id"], thread_id, content):
+        return redirect("/thread/"+str(thread_id))
+    return render_template("error.html", error="Uuden viestin lähettäminen epäonnistui")
