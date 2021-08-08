@@ -1,18 +1,24 @@
-# Keskustelusovellus
+# Chatmate
 
-Sovelluksessa näkyy keskustelualueita, joista jokaisella on tietty aihe. Alueilla on keskusteluketjuja, jotka muodostuvat viesteistä. Jokainen käyttäjä on peruskäyttäjä tai ylläpitäjä.
+Sovellus on keskustelusovellus, jossa käyttäjät pääsevät luomaan keskusteluketjuja, joilla on oma aihe. Ketjuihin voi lisätä kommentteja ja niitä voi tykätä tykkäys-painikkeella. Käyttäjätyyppejä ovat ylläpitäjä sekä käyttäjä.
 
 
 
-Sovelluksen ominaisuuksia:
+## Sovelluksen ominaisuuksia:
 
-* Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen.
-* Käyttäjä näkee sovelluksen etusivulla listan alueista sekä jokaisen alueen ketjujen ja viestien määrän ja viimeksi lähetetyn viestin ajankohdan.
-* Käyttäjä voi luoda alueelle uuden ketjun antamalla ketjun otsikon ja aloitusviestin sisällön.
-* Käyttäjä voi kirjoittaa uuden viestin olemassa olevaan ketjuun.
-* Käyttäjä voi muokata luomansa ketjun otsikkoa sekä lähettämänsä viestin sisältöä. Käyttäjä voi myös poistaa ketjun tai viestin.
+* Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen. (tehty)
+* Käyttäjä näkee sovelluksen etusivulla listan alueista. (tehty)
+* Käyttäjä näkee sovelluksen etusivulla alueiden viestien sekä alueella vieraillun käyttäjien määrän.
+* Käyttäjä voi luoda alueelle uuden ketjun antamalla ketjun otsikon. (tehty)
+* Käyttäjä voi kirjoittaa uuden viestin olemassa olevaan ketjuun. (tehty)
+* Käyttäjä voi muokata luomansa ketjun otsikkoa sekä lähettämänsä viestin sisältöä.
+* Käyttäjä voi poistaa ketjun tai viestin. (tehty)
 * Käyttäjä voi etsiä kaikki viestit, joiden osana on annettu sana.
-* Ylläpitäjä voi lisätä ja poistaa keskustelualueita.
+* Käyttäjä voi tykätä viestistä.
+* Ylläpitäjä voi lisätä ja poistaa keskustelualueita. (tehty)
 * Ylläpitäjä voi luoda salaisen alueen ja määrittää, keillä käyttäjillä on pääsy alueelle.
 
 
+## Sovelluksen osoite
+
+https://tsoha-chatm8.herokuapp.com/
