@@ -66,3 +66,10 @@ def create_message(thread_id):
     if messages.create(session["user_id"], thread_id, content):
         return redirect("/thread/"+str(thread_id))
     return render_template("error.html", error="Uuden viestin lähettäminen epäonnistui")
+
+@app.route("/delete_message/<int:id>", methods=["GET", "POST"])
+def delete_message(id):
+    if messages.delete(id, session["user_id"], session["user_role"]):
+        print("jej")
+        return redirect("/thread/"+str(messages.get_thread_id(id)))
+    return render_template("error.html", error="Viestin poistaminen epäonnistui")
