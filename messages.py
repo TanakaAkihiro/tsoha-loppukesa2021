@@ -4,7 +4,7 @@ import users, threads
 
 def get_list(thread_id):
     sql = """SELECT M.id, M.user_id, M.content, M.created_at, M.visible, T.id as thread_id, U.username 
-        FROM messages M, threads T, users U WHERE M.thread_id=T.id AND M.user_id=U.id AND T.id=:thread_id"""
+        FROM messages M, threads T, users U WHERE M.thread_id=T.id AND M.user_id=U.id AND T.id=:thread_id ORDER BY M.id"""
     result = db.session.execute(sql, {"thread_id":thread_id})
     return result.fetchall()
 
