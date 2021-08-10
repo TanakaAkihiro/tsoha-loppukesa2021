@@ -21,3 +21,9 @@ CREATE TABLE messages (
     created_at TIMESTAMP,
     visible BOOLEAN
 );
+
+CREATE TABLE visits (
+    id SERIAL PRIMARY KEY,
+    thread_id INTEGER REFERENCES threads,
+    visited_at TIMESTAMP
+);

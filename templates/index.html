@@ -19,9 +19,14 @@
         Aihe: {{thread.topic}} <br>
         Luotu: {{thread.created_at.strftime("%Y-%m-%d %H:%M:%S")}} <br>
         Luoja: {{thread.username}} <br>
-        {% for count in counts %}
+        {% for count in message_counts %}
         {% if count.thread_id == thread.id %}
-        💬: {{count.count}} <br>
+        💬: {{count.count}}  
+        {% endif %}
+        {% endfor %}
+        {% for count in visit_counts %}
+        {% if count.thread_id == thread.id %}
+        👁️: {{count.count}} <br>
         {% endif %}
         {% endfor %}
         <a href="/thread/{{thread.id}}">Siirry keskusteluun</a>

@@ -1,13 +1,14 @@
 from logging import error
 from app import app
 from flask import render_template, request, redirect, session
-import users, threads, messages
+import users, threads, messages, visits
 
 @app.route("/")
 def index():
     list = threads.get_list()
-    count_list = threads.get_message_counts()
-    return render_template("index.html", threads=list, counts=count_list)
+    message_counter = threads.get_message_counts()
+    visit_counter = visits.get_counter()
+    return render_template("index.html", threads=list, message_counts=message_counter, visit_counts=visit_counter)
 
 @app.route("/new_account")
 def new_account():
@@ -55,6 +56,7 @@ def delete_thread(id):
 @app.route("/thread/<int:id>")
 def thread(id):
     list = messages.get_list(id)
+    visits.add_visit(id)
     return render_template("thread.html", messages=list, thread=threads.topic(id))
 
 @app.route("/new_message/<int:thread_id>")
