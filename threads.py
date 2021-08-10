@@ -32,5 +32,5 @@ def topic(id):
 
 def get_message_counts():
     sql = """SELECT T.id as thread_id, COUNT(M.id) FROM messages M, threads T
-        WHERE M.thread_id=T.id AND T.visible=true GROUP BY T.id ORDER BY T.id"""
+        WHERE M.thread_id=T.id AND M.visible=true GROUP BY T.id ORDER BY T.id"""
     return db.session.execute(sql).fetchall()
