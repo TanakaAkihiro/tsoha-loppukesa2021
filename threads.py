@@ -3,7 +3,7 @@ import users
 
 def get_list():
     sql = """SELECT T.id, T.topic, T.created_at, T.visible, U.username, U.role FROM threads T, users U 
-            WHERE T.user_id=U.id ORDER BY T.id"""
+            WHERE T.user_id=U.id AND T.visible=true ORDER BY T.id"""
     result = db.session.execute(sql)
     return result.fetchall()
 
@@ -29,3 +29,8 @@ def delete(id, user_id, user_role):
 def topic(id):
     sql = "SELECT id, topic FROM threads WHERE id=:id"
     return db.session.execute(sql, {"id":id}).fetchone()
+
+def get_message_counts():
+    sql = """SELECT T.id as thread_id, COUNT(M.id) FROM messages M, threads T
+        WHERE M.thread_id=T.id AND T.visible=true GROUP BY T.id ORDER BY T.id"""
+    return db.session.execute(sql).fetchall()

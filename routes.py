@@ -6,7 +6,8 @@ import users, threads, messages
 @app.route("/")
 def index():
     list = threads.get_list()
-    return render_template("index.html", threads=list)
+    count_list = threads.get_message_counts()
+    return render_template("index.html", threads=list, counts=count_list)
 
 @app.route("/new_account")
 def new_account():

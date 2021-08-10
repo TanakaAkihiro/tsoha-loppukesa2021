@@ -19,6 +19,11 @@
         Aihe: {{thread.topic}} <br>
         Luotu: {{thread.created_at.strftime("%Y-%m-%d %H:%M:%S")}} <br>
         Luoja: {{thread.username}} <br>
+        {% for count in counts %}
+        {% if count.thread_id == thread.id %}
+        💬: {{count.count}} <br>
+        {% endif %}
+        {% endfor %}
         <a href="/thread/{{thread.id}}">Siirry keskusteluun</a>
         {% if thread.username == session.username or session.user_role == 2 %}
         | <a href="/delete_thread/{{thread.id}}">Poista keskusteluketju</a>
