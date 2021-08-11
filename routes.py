@@ -73,6 +73,11 @@ def create_message(thread_id):
 @app.route("/delete_message/<int:id>", methods=["GET", "POST"])
 def delete_message(id):
     if messages.delete(id, session["user_id"], session["user_role"]):
-        print("jej")
         return redirect("/thread/"+str(messages.get_thread_id(id)))
     return render_template("error.html", error="Viestin poistaminen epäonnistui")
+
+@app.route("/search_result", methods=["POST"])
+def search_result():
+    query = request.form["query"]
+    result = messages.search(query)
+    return render_template("search_result.html", messages=result)

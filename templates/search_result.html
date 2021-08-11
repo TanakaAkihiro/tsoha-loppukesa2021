@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewpoint" content="width=device-width", initial-scale=1>
+        <title>Chatmate</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css')}}">
+    </head>
+    <body>
+        <div class="header">
+            Chatmate
+        </div>
+        {% if session.username %}
+        <a href="/">Palaa kotisivulle</a> |
+        <a href="/logout">Kirjaudu ulos</a>
+        <hr>
+        {% for message in messages %}
+        Aihe: {{message.topic}} <br>
+        Lähettäjä: {{message.username}} <br>
+        {{message.content}} <br>
+        {{message.created_at.strftime("%Y-%m-%d %H:%M:%S")}} <br>
+        {% if message.username == session.username or session.user_role == 2 %}
+        <a href="/delete_message/{{message.id}}">Poista viesti</a>
+        {% endif %}
+        <hr>
+        {% endfor %}
+        {% endif %}
+    </body>
+</html>
