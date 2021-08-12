@@ -50,6 +50,13 @@
     padding-bottom: 15px;
 }
 
+.password input[type=password] {
+    border: 1px solid #ccc;
+    color: black;
+    font-size: 30px;
+    border-radius: .2em;
+}
+
 .password_2 {
     display: flex;
     justify-content: center;
@@ -77,6 +84,12 @@
     padding-top: 200px;
 }
 
+.username input[type="text"]{
+    border: 1px solid #ccc;
+    color: black;
+    font-size: 30px;
+    border-radius: .2em;
+}
 
 body {
     background-color: chartreuse;
@@ -89,9 +102,3 @@ button {
     font-size: 20px;
 }
 
-input[type=text], input[type=password] {
-    border: 1px solid #ccc;
-    color: black;
-    font-size: 30px;
-    border-radius: .2em;
-}
