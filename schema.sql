@@ -27,3 +27,10 @@ CREATE TABLE visits (
     thread_id INTEGER REFERENCES threads,
     visited_at TIMESTAMP
 );
+
+CREATE TABLE likes (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users,
+    message_id INTEGER REFERENCES messages,
+    bool BOOLEAN
+);

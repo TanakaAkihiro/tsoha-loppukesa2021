@@ -1,7 +1,7 @@
 from logging import error
 from app import app
 from flask import render_template, request, redirect, session
-import users, threads, messages, visits
+import users, threads, messages, visits, likes
 
 @app.route("/")
 def index():
@@ -55,9 +55,10 @@ def delete_thread(id):
 
 @app.route("/thread/<int:id>")
 def thread(id):
-    list = messages.get_list(id)
+    message_list = messages.get_list(id)
+    like_list = likes.get_list(id)
     visits.add_visit(id)
-    return render_template("thread.html", messages=list, thread=threads.topic(id))
+    return render_template("thread.html", messages=message_list, likes=like_list, thread=threads.topic(id))
 
 @app.route("/new_message/<int:thread_id>")
 def new_message(thread_id):

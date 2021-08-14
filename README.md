@@ -8,12 +8,12 @@ Sovellus on keskustelusovellus, jossa käyttäjät pääsevät luomaan keskustel
 
 * Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen. (tehty)
 * Käyttäjä näkee sovelluksen etusivulla listan alueista. (tehty)
-* Käyttäjä näkee sovelluksen etusivulla alueiden viestien sekä alueella vieraillun käyttäjien määrän.
+* Käyttäjä näkee sovelluksen etusivulla alueiden viestien sekä alueella vieraillun käyttäjien määrän. (tehty)
 * Käyttäjä voi luoda alueelle uuden ketjun antamalla ketjun otsikon. (tehty)
 * Käyttäjä voi kirjoittaa uuden viestin olemassa olevaan ketjuun. (tehty)
 * Käyttäjä voi muokata luomansa ketjun otsikkoa sekä lähettämänsä viestin sisältöä.
 * Käyttäjä voi poistaa ketjun tai viestin. (tehty)
-* Käyttäjä voi etsiä kaikki viestit, joiden osana on annettu sana.
+* Käyttäjä voi etsiä kaikki viestit, joiden osana on annettu sana. (tehty)
 * Käyttäjä voi tykätä viestistä.
 * Ylläpitäjä voi lisätä ja poistaa keskustelualueita. (tehty)
 * Ylläpitäjä voi luoda salaisen alueen ja määrittää, keillä käyttäjillä on pääsy alueelle.
