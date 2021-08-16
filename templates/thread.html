@@ -23,11 +23,13 @@
         Lähettäjä: {{message.username}} <br>
         {{message.content}} <br>
         {{message.created_at.strftime("%Y-%m-%d %H:%M:%S")}} <br>
+        Tykkäykset: 
         {% for like in likes %}
         {% if like.message_id == message.id %}
-        Tykkäykset: {{like.count}}
+        {{like.count}}
         {% endif %}
         {% endfor %}
+        <br>
         {% if message.username == session.username or session.user_role == 2 %}
         <a href="/delete_message/{{message.id}}">Poista viesti</a>
         {% endif %}
