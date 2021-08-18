@@ -82,3 +82,14 @@ def search_result():
     query = request.form["query"]
     result = messages.search(query)
     return render_template("search_result.html", messages=result)
+
+@app.route("/like/<int:thread_id>/<int:message_id>")
+def like_message(thread_id, message_id):
+    if not likes.check_if_liked_before(session["user_id"], message_id):
+        likes.like_message(session["user_id"],message_id)
+    else:
+        if likes.update_like(session["user_id"], message_id):
+            return redirect("/thread/"+str(thread_id))
+        else:
+            return render_template("error.html", error="Tykkääminen/tykkäyksen poistaminen epäonnistui")
+        

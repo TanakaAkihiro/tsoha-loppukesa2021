@@ -29,6 +29,9 @@
         {{like.count}}
         {% endif %}
         {% endfor %}
+        <form action="/like/{{message.thread_id}}/{{message.id}}">
+            <button type="submit">Tykkää</button>
+        </form>
         <br>
         {% if message.username == session.username or session.user_role == 2 %}
         <a href="/delete_message/{{message.id}}">Poista viesti</a>
