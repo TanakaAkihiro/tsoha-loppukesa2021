@@ -24,14 +24,28 @@
         {{message.content}} <br>
         {{message.created_at.strftime("%Y-%m-%d %H:%M:%S")}} <br>
         Tykkäykset: 
-        {% for like in likes %}
-        {% if like.message_id == message.id %}
-        {{like.count}}
+        {% for count in like_counts %}
+        {% if count.message_id == message.id %}
+        {{count.count}}
         {% endif %}
         {% endfor %}
-        <form action="/like/{{message.thread_id}}/{{message.id}}">
-            <button type="submit">Tykkää</button>
-        </form>
+        {% for like in likes %}
+        {% if like.message_id == message.id %}
+        {% if like.bool %}
+        <div class="liked_like-button">
+            <form action="/like/{{message.thread_id}}/{{message.id}}">
+                <button type="submit">Tykkää</button>
+            </form>
+        </div>
+        {% else %}
+        <div class="unliked_like-button">
+            <form action="/like/{{message.thread_id}}/{{message.id}}">
+                <button type="submit">Tykkää</button>
+            </form>
+        </div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
         <br>
         {% if message.username == session.username or session.user_role == 2 %}
         <a href="/delete_message/{{message.id}}">Poista viesti</a>

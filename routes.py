@@ -56,9 +56,10 @@ def delete_thread(id):
 @app.route("/thread/<int:id>")
 def thread(id):
     message_list = messages.get_list(id)
-    like_list = likes.get_list(id)
+    like_counts = likes.get_counts(id)
+    like_list = likes.get_list(session["user_id"])
     visits.add_visit(id)
-    return render_template("thread.html", messages=message_list, likes=like_list, thread=threads.topic(id))
+    return render_template("thread.html", messages=message_list, like_counts=like_counts, likes=like_list, thread=threads.topic(id))
 
 @app.route("/new_message/<int:thread_id>")
 def new_message(thread_id):
@@ -87,9 +88,9 @@ def search_result():
 def like_message(thread_id, message_id):
     if not likes.check_if_liked_before(session["user_id"], message_id):
         likes.like_message(session["user_id"],message_id)
+        return redirect("/thread/"+str(thread_id))
     else:
         if likes.update_like(session["user_id"], message_id):
             return redirect("/thread/"+str(thread_id))
         else:
             return render_template("error.html", error="Tykkääminen/tykkäyksen poistaminen epäonnistui")
-        
