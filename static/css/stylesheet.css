@@ -26,11 +26,21 @@
 }
 
 .login_button {
-    color: green;
-    box-sizing: 30px;
     margin: auto;
     cursor: pointer;
     max-width: max-content;
+}
+
+.login_button button {
+    border-radius: .1em;
+    background-color: green;
+    color: black;
+    font-size: 20px;
+}
+
+.liked_like-button button {
+    background-color: blue;
+    color: white;
 }
 
 .new_account {
@@ -50,7 +60,7 @@
     padding-bottom: 15px;
 }
 
-.password input[type=password] {
+.password input[type=password], .password_2 input[type=password] {
     border: 1px solid #ccc;
     color: black;
     font-size: 30px;
@@ -78,6 +88,11 @@
     color: blue;
 }
 
+.unliked_like-button button {
+    background-color: lightgray;
+    color: black;
+}
+
 .username {
     display: flex;
     justify-content: center;
@@ -95,10 +110,4 @@ body {
     background-color: chartreuse;
 }
 
-button {
-    border-radius: .1em;
-    background-color: green;
-    color: black;
-    font-size: 20px;
-}
 

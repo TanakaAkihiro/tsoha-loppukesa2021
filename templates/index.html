@@ -13,8 +13,9 @@
         {% if session.username %}
         <a href="/new_thread">Aloita uusi keskustelu</a> |
         <form action="/search_result" method="POST">
-        Hakusana: <input type="text" name="query">
-        <button type="submit">Lähetä</button></form>  |
+            Hakusana: <input type="text" name="query">
+            <button type="submit">Lähetä</button>
+        </form>  |
         <a href="/logout">Kirjaudu ulos</a>
         <hr>
         {% for thread in threads %}
