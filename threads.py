@@ -34,3 +34,12 @@ def get_message_counts():
     sql = """SELECT T.id as thread_id, COUNT(M.id) FROM messages M, threads T
         WHERE M.thread_id=T.id AND M.visible=true GROUP BY T.id ORDER BY T.id"""
     return db.session.execute(sql).fetchall()
+
+def update(id, topic):
+    sql = "UPDATE threads SET topic=:topic WHERE id=:id"
+    try:
+        db.session.execute(sql, {"id":id, "topic":topic})
+        db.session.commit()
+        return True
+    except:
+        return False

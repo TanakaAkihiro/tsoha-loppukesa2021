@@ -12,11 +12,11 @@
         </div>
         {% if session.username %}
         <a href="/new_thread">Aloita uusi keskustelu</a> |
+        <a href="/logout">Kirjaudu ulos</a>
         <form action="/search_result" method="POST">
             Hakusana: <input type="text" name="query">
             <button type="submit">Lähetä</button>
-        </form>  |
-        <a href="/logout">Kirjaudu ulos</a>
+        </form>
         <hr>
         {% for thread in threads %}
         {% if thread.visible %}
@@ -34,6 +34,9 @@
         {% endif %}
         {% endfor %}
         <a href="/thread/{{thread.id}}">Siirry keskusteluun</a>
+        {% if thread.username == session.username %}
+        | <a href="/edit_thread/{{thread.id}}">Muokkaa keskustelun aihetta</a>
+        {% endif %}
         {% if thread.username == session.username or session.user_role == 2 %}
         | <a href="/delete_thread/{{thread.id}}">Poista keskusteluketju</a>
         {% endif %}

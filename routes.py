@@ -61,6 +61,18 @@ def thread(id):
     visits.add_visit(id)
     return render_template("thread.html", messages=message_list, like_counts=like_counts, likes=like_list, thread=threads.topic(id))
 
+@app.route("/edit_thread/<int:thread_id>")
+def edit_thread(thread_id):
+    thread = threads.topic(thread_id)
+    return render_template("edit_thread.html", thread=thread)
+
+@app.route("/update_thread/<int:thread_id>", methods=["GET", "POST"])
+def update_thread(thread_id):
+    topic = request.form["topic"]
+    if threads.update(thread_id, topic):
+        return redirect("/")
+    return render_template("error.html", error="Aiheen muokkaaminen epäonnistui")
+
 @app.route("/new_message/<int:thread_id>")
 def new_message(thread_id):
     return render_template("new_message.html", thread=threads.topic(thread_id))
