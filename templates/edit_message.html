@@ -10,12 +10,10 @@
         <div class="header">
             Chatmate
         </div>
-        <a href="/">Palaa kotisivulle</a> <br>
-        {{thread.topic}} <hr>
-        <form action="/create_message/{{thread.id}}" method="POST">
-            Kirjoita uusi viesti: <br>
-            <textarea name="content" id="" cols="100" rows="15" required></textarea> <br>
-            <button type="submit">Lähetä viesti</button>
+        <a href="/">Palaa kotisivulle</a> <hr>
+        <form action="/update_message/{{message.id}}" method="POST">
+            <textarea name="content" id="" cols="100" rows="15" required>{{message.content}}</textarea> <br>
+            <button type="submit">Valmis</button>
         </form>
     </body>
 </html>

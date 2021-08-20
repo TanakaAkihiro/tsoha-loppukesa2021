@@ -47,6 +47,9 @@
         {% endif %}
         {% endfor %}
         <br>
+        {% if message.username == session.username %}
+        <a href="/edit_message/{{message.id}}">Muokkaa viestiä</a>
+        {% endif %}
         {% if message.username == session.username or session.user_role == 2 %}
         <a href="/delete_message/{{message.id}}">Poista viesti</a>
         {% endif %}

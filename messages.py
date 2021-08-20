@@ -28,6 +28,20 @@ def delete(id, user_id, user_role):
         return True
     return False
 
+def get_content(id):
+    sql = "SELECT id, content FROM messages WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    return result.fetchone()
+
+def update(id, content):
+    sql = "UPDATE messages SET content=:content WHERE id=:id"
+    try:
+        db.session.execute(sql, {"id":id, "content":content})
+        db.session.commit()
+        return True
+    except:
+        return False
+
 def get_thread_id(id):
     sql = "SELECT thread_id FROM messages WHERE id=:id"
     result = db.session.execute(sql, {"id":id})

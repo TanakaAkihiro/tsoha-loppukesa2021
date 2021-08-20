@@ -78,6 +78,18 @@ def delete_message(id):
         return redirect("/thread/"+str(messages.get_thread_id(id)))
     return render_template("error.html", error="Viestin poistaminen epäonnistui")
 
+@app.route("/edit_message/<int:message_id>")
+def edit_message(message_id):
+    message = messages.get_content(message_id)
+    return render_template("edit_message.html", message=message)
+
+@app.route("/update_message/<int:message_id>", methods=["GET", "POST"])
+def update_message(message_id):
+    content = request.form["content"]
+    if messages.update(message_id, content):
+        return redirect("/thread/"+str(messages.get_thread_id(message_id)))
+    return render_template("error.html", error="Viestin muokkaaminen epäonnistui")
+
 @app.route("/search_result", methods=["POST"])
 def search_result():
     query = request.form["query"]
