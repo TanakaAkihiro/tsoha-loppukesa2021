@@ -16,8 +16,6 @@ Sovellus on keskustelusovellus, jossa käyttäjät pääsevät luomaan keskustel
 * Käyttäjä voi etsiä kaikki viestit, joiden osana on annettu sana. (tehty)
 * Käyttäjä voi tykätä viestistä. (tehty)
 * Ylläpitäjä voi lisätä ja poistaa keskustelualueita. (tehty)
-* Ylläpitäjä voi luoda salaisen alueen ja määrittää, keillä käyttäjillä on pääsy alueelle.
-
 
 ## Sovelluksen osoite
 

@@ -16,6 +16,7 @@
             Kirjoita uusi viesti: <br>
             <textarea name="content" id="" cols="100" rows="15" required></textarea> <br>
             <button type="submit">Lähetä viesti</button>
+            <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
         </form>
     </body>
 </html>

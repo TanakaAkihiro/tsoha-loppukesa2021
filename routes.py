@@ -42,6 +42,7 @@ def new_thread():
 
 @app.route("/create_thread", methods=["POST"])
 def create_thread():
+    users.check_csrf(request.form["csrf_token"])
     topic = request.form["topic"]
     if threads.create(session["user_id"], topic):
         return redirect("/")
@@ -79,6 +80,7 @@ def new_message(thread_id):
 
 @app.route("/create_message/<int:thread_id>", methods=["POST"])
 def create_message(thread_id):
+    users.check_csrf(request.form["csrf_token"])
     content = request.form["content"]
     if messages.create(session["user_id"], thread_id, content):
         return redirect("/thread/"+str(thread_id))
