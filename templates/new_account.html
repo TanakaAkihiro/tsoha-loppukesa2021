@@ -7,9 +7,9 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css')}}">
     </head>
     <body>
-        <div class="header">
-            Chatmate
-        </div>
+        <header>
+            <h1>Chatmate</h1>
+        </header>
         <form action="/create_account" method="POST" onsubmit="return check(this)">
             <div class="username">
                 <input type="text" placeholder="Uusi käyttäjätunnus" name="username" required>

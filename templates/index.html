@@ -10,54 +10,63 @@
         <header>
             <h1>Chatmate</h1>
         </header>
-        {% if session.username %}
-        <a href="/new_thread">Aloita uusi keskustelu</a> |
-        <a href="/logout">Kirjaudu ulos</a>
-        <form action="/search_result" method="POST">
-            Hakusana: <input type="text" name="query">
-            <button type="submit">Lähetä</button>
-        </form>
-        <hr>
-        {% for thread in threads %}
-        {% if thread.visible %}
-        Aihe: {{thread.topic}} <br>
-        Luotu: {{thread.created_at.strftime("%Y-%m-%d %H:%M:%S")}} <br>
-        Luoja: {{thread.username}} <br>
-        {% for count in message_counts %}
-        {% if count.thread_id == thread.id %}
-        💬: {{count.count}}  
-        {% endif %}
-        {% endfor %}
-        {% for count in visit_counts %}
-        {% if count.thread_id == thread.id %}
-        👁️: {{count.count}} <br>
-        {% endif %}
-        {% endfor %}
-        <a href="/thread/{{thread.id}}">Siirry keskusteluun</a>
-        {% if thread.username == session.username %}
-        | <a href="/edit_thread/{{thread.id}}">Muokkaa keskustelun aihetta</a>
-        {% endif %}
-        {% if thread.username == session.username or session.user_role == 2 %}
-        | <a href="/delete_thread/{{thread.id}}">Poista keskusteluketju</a>
-        {% endif %}
-        <hr>
-        {% endif %}
-        {% endfor %}
-        {% else %}
-        <form action="/login" method="POST">
-            <div class="username">
-                <input type="text" placeholder="Käyttäjätunnus" name="username" required>
+        <div class="main">
+            <div class="container">
+                {% if session.username %}
+                <a href="/new_thread">Aloita uusi keskustelu</a> |
+                <a href="/logout">Kirjaudu ulos</a>
+                <form action="/search_result" method="POST">
+                    Hakusana: <input type="text" name="query">
+                    <button type="submit">Lähetä</button>
+                </form>
+                <hr>
+                {% for thread in threads %}
+                {% if thread.visible %}
+                Aihe: {{thread.topic}} <br>
+                Luotu: {{thread.created_at.strftime("%Y-%m-%d %H:%M:%S")}} <br>
+                Luoja: {{thread.username}} <br>
+                {% for count in message_counts %}
+                {% if count.thread_id == thread.id %}
+                💬: {{count.count}}  
+                {% endif %}
+                {% endfor %}
+                {% for count in visit_counts %}
+                {% if count.thread_id == thread.id %}
+                👁️: {{count.count}} <br>
+                {% endif %}
+                {% endfor %}
+                <a href="/thread/{{thread.id}}">Siirry keskusteluun</a>
+                {% if thread.username == session.username %}
+                | <a href="/edit_thread/{{thread.id}}">Muokkaa keskustelun aihetta</a>
+                {% endif %}
+                {% if thread.username == session.username or session.user_role == 2 %}
+                | <a href="/delete_thread/{{thread.id}}">Poista keskusteluketju</a>
+                {% endif %}
+                <hr>
+                {% endif %}
+                {% endfor %}
             </div>
-            <div class="password">
-                <input type="password" placeholder="Salasana" name="password" required>
+        </div>
+        
+        <div class="login_wrapper">
+            <div class="container">
+                {% else %}
+                <form action="/login" method="POST">
+                    <div class="username">
+                        <input type="text" placeholder="Käyttäjätunnus" name="username" required>
+                    </div>
+                    <div class="password">
+                        <input type="password" placeholder="Salasana" name="password" required>
+                    </div>
+                    <div class="login_button">
+                        <button type="submit">Kirjaudu sisään</button>
+                    </div>
+                </form>
+                <div class="registeration">
+                    <a href="/new_account">Luo uusi käyttäjä</a>
+                {% endif %}
+                </div>
             </div>
-            <div class="login_button">
-                <button type="submit">Kirjaudu sisään</button>
-            </div>
-        </form>
-        <div class="registeration">
-            <a href="/new_account">Luo uusi käyttäjä</a>
-        {% endif %}
         </div>
     </body>
 </html>

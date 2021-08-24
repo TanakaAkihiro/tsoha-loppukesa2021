@@ -36,7 +36,6 @@ header {
     height: 200px;
     text-align: center;
     padding-top: 30px;
-    height: 200px
 }
 
 header h1{
@@ -45,17 +44,30 @@ header h1{
     font-size: 100px;
 }
 
-.login_button {
-    margin: auto;
-    cursor: pointer;
-    max-width: max-content;
+.login_wrapper {
+    text-align: center;
 }
 
-.login_button button {
-    border-radius: .1em;
-    background-color: green;
-    color: black;
+.login_button, .create_button {
+    text-align: center;
+    cursor: pointer;
+    padding-top: 15px;
+}
+
+.login_button button, .create_button button {
+    border-radius: 4px;
+    background-color: #409b3c;
+    color: white;
+    opacity: 0.8;
     font-size: 20px;
+    padding: 8px 24px;
+    box-shadow: 0 4px #1a7940;
+}
+
+.login_button button:active, .create_button button:active{
+    position: relative;
+    top:4px;
+    box-shadow: none;
 }
 
 .liked_like-button button {
