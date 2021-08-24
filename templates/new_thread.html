@@ -7,9 +7,9 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css')}}">
     </head>
     <body>
-        <div class="header">
-            Chatmate
-        </div>
+        <header>
+            <h1>Chatmate</h1>
+        </header>
         <form action="/create_thread" method="POST">
             Syötä aihe: <br>
             <textarea name="topic" cols="30" rows="2" required></textarea> <br>
