@@ -1,3 +1,18 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body,
+ul, ol, li,
+h1, h2, h3, h4, h5, h6, p, div {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: chartreuse;
+}
+
 .create_button {
     color: green;
     box-sizing: 30px;
@@ -15,14 +30,19 @@
     text-decoration: underline;
 }
 
-.header {
-    text-align: center;
-    padding-top: 3%;
+header {
     color: red;
     background-color: black;
+    height: 200px;
+    text-align: center;
+    padding-top: 30px;
+    height: 200px
+}
+
+header h1{
+    color:red;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 100px;
-    height: 200px;
 }
 
 .login_button {
@@ -104,10 +124,6 @@
     color: black;
     font-size: 30px;
     border-radius: .2em;
-}
-
-body {
-    background-color: chartreuse;
 }
 
 
