@@ -12,14 +12,18 @@
         </header>
         <div class="main">
             <div class="container">
-                {% if session.username %}
-                <a href="/new_thread">Aloita uusi keskustelu</a> |
-                <a href="/logout">Kirjaudu ulos</a>
-                <form action="/search_result" method="POST">
-                    Hakusana: <input type="text" name="query">
-                    <button type="submit">Lähetä</button>
-                </form>
-                <hr>
+                <div class="sub_header">
+                    {% if session.username %}
+                    <a href="/new_thread">Aloita uusi keskustelu</a> |
+                    <a href="/logout">Kirjaudu ulos</a>
+                    <div class="search">
+                        <form action="/search_result" method="POST">
+                            Hakusana: <input type="text" name="query">
+                            <button type="submit">Lähetä</button>
+                        </form>
+                    </div>
+                    
+                </div>
                 {% for thread in threads %}
                 {% if thread.visible %}
                 Aihe: {{thread.topic}} <br>
