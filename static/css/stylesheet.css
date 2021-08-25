@@ -10,7 +10,7 @@ h1, h2, h3, h4, h5, h6, p, div {
 }
 
 body {
-    background-color: chartreuse;
+    background-image: url(../images/wallpaper.jpg);
 }
 
 .create_button {
@@ -31,17 +31,17 @@ body {
 }
 
 header {
-    color: red;
-    background-color: black;
     height: 200px;
-    text-align: center;
-    padding-top: 30px;
+    background-color: black;
 }
+
 
 header h1{
     color:red;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 100px;
+    text-align: center;
+    padding-top: 30px;
 }
 
 .login_wrapper {
