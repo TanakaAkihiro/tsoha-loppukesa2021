@@ -10,27 +10,30 @@
         <header>
             <h1>Chatmate</h1>
         </header>
-        <form action="/create_account" method="POST" onsubmit="return check(this)">
-            <div class="username">
-                <input type="text" placeholder="Uusi käyttäjätunnus" name="username" required>
-            </div>
-            <div class="password">
-                <input type="password" placeholder="Uusi salasana" name="password" required>
-            </div>
-            <div class="password_2">
-                <input type="password" placeholder="Salasana uudestaan" name="password_2" required>
-            </div>
-            <div class="role">
-            <p>Käyttäjärooli: 
-            <select name="role">
-                <option value="1">Käyttäjä</option>
-                <option value="2">Ylläpitäjä</option>
-            </select></p>
-            </div>
-            <div class="create_button">
-                <button type="submit">Luo tunnus</button>
-            </div>
-        </form>
+        <div class="main">
+            <a href="/">Palaa etusivulle</a>
+            <form action="/create_account" method="POST" onsubmit="return check(this)">
+                <div class="username">
+                    <input type="text" placeholder="Uusi käyttäjätunnus" name="username" required>
+                </div>
+                <div class="password">
+                    <input type="password" placeholder="Uusi salasana" name="password" required>
+                </div>
+                <div class="password_2">
+                    <input type="password" placeholder="Salasana uudestaan" name="password_2" required>
+                </div>
+                <div class="role">
+                    <p>Käyttäjärooli: 
+                    <select name="role">
+                        <option value="1">Käyttäjä</option>
+                        <option value="2">Ylläpitäjä</option>
+                    </select></p>
+                </div>
+                <div class="create_button">
+                    <button type="submit">Luo tunnus</button>
+                </div>
+            </form>
+        </div>
     <script>
         function check(form) {
             if (form.password.value != form.password_2.value) {

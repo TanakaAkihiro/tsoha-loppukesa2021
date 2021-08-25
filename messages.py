@@ -49,5 +49,5 @@ def get_thread_id(id):
 
 def search(query):
     sql = """SELECT M.id, M.content, M.created_at, U.username, T.topic FROM messages M, users U, threads T 
-        WHERE M.thread_id=T.id AND M.user_id=U.id AND M.content LIKE '%mo%' AND M.visible=true AND T.visible=true;"""
-    return db.session.execute(sql, {"query":"%"+query+"%"}).fetchall()
+        WHERE M.thread_id=T.id AND M.user_id=U.id AND M.content LIKE :query AND M.visible=true AND T.visible=true;"""
+    return db.session.execute(sql, {"query":"%"+str(query)+"%"}).fetchall()
