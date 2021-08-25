@@ -146,3 +146,43 @@ header h1{
     height: 50px;
     background-color: rgba(34, 49, 52, 0.6);
 }
+
+.new_thread a, .logout a, .search span{
+    text-decoration: none;
+    line-height: 50px;
+    padding: 0 25px;
+    color: white;
+    display: block;
+    float: left;
+    transition: 0.5s;
+}
+
+.new_thread a:hover, .logout a:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.search input[type="text"] {
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    color: black;
+    display: block;
+    transition: 0.5s;
+    float: right;
+}
+
+.search input[type="text"]:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.search input[type="text"]:focus {
+    background-color: white;
+}
+
+.search ::placeholder {
+    color: white;
+}
+
+.search button {
+    display: none;
+}
