@@ -10,29 +10,37 @@
         <header>
             <h1>Chatmate</h1>
         </header>
+        <div class="sub_header">
+            <div class="container">
+                <div class="back_home">
+                    <a href="/">Palaa etusivulle</a>
+                </div>
+            </div>
+        </div>
         <div class="main">
-            <a href="/">Palaa etusivulle</a>
-            <form action="/create_account" method="POST" onsubmit="return check(this)">
-                <div class="username">
-                    <input type="text" placeholder="Uusi käyttäjätunnus" name="username" required>
-                </div>
-                <div class="password">
-                    <input type="password" placeholder="Uusi salasana" name="password" required>
-                </div>
-                <div class="password_2">
-                    <input type="password" placeholder="Salasana uudestaan" name="password_2" required>
-                </div>
-                <div class="role">
-                    <p>Käyttäjärooli: 
-                    <select name="role">
-                        <option value="1">Käyttäjä</option>
-                        <option value="2">Ylläpitäjä</option>
-                    </select></p>
-                </div>
-                <div class="create_button">
-                    <button type="submit">Luo tunnus</button>
-                </div>
-            </form>
+            <div class="container">
+                <form class="account_form" action="/create_account" method="POST" onsubmit="return check(this)">
+                    <div class="username">
+                        <input type="text" placeholder="Uusi käyttäjätunnus" name="username" required>
+                    </div>
+                    <div class="password">
+                        <input type="password" placeholder="Uusi salasana" name="password" required>
+                    </div>
+                    <div class="password_2">
+                        <input type="password" placeholder="Salasana uudestaan" name="password_2" required>
+                    </div>
+                    <div class="role">
+                        <p>Käyttäjärooli: 
+                        <select name="role">
+                            <option value="1">Käyttäjä</option>
+                            <option value="2">Ylläpitäjä</option>
+                        </select></p>
+                    </div>
+                    <div class="create_button">
+                        <button type="submit">Luo tunnus</button>
+                    </div>
+                </form>
+            </div>
         </div>
     <script>
         function check(form) {

@@ -123,8 +123,14 @@ header h1{
 .role {
     display: flex;
     justify-content: center;
-    font-size: 30px;
+    font-size: 20px;
     color: blue;
+}
+
+.role select {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
 }
 
 .unliked_like-button button {
@@ -155,7 +161,7 @@ header h1{
     background-color: rgba(34, 49, 52, 0.6);
 }
 
-.new_thread a, .logout a, .search span{
+.new_thread a, .logout a, .search span, .back_home a{
     text-decoration: none;
     line-height: 50px;
     padding: 0 25px;
@@ -165,7 +171,7 @@ header h1{
     transition: 0.5s;
 }
 
-.new_thread a:hover, .logout a:hover{
+.new_thread a:hover, .logout a:hover, .back_home a:hover{
     background-color: rgba(255, 255, 255, 0.3);
 }
 
@@ -211,11 +217,20 @@ header h1{
     float: left;
 }
 
-.comments, .views{
+.comments{
     float: right;
-    padding: 0 10px;
+    margin-left: 5px;
 }
 
-.created_at {
+.created_at, .views {
     float: right;
+}
+
+.login_form {
+    padding-top: 70px;
+}
+
+.account_form {
+    height: 600px;
+    border-radius: 4px;
 }
