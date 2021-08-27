@@ -18,6 +18,9 @@ def new_account():
 def create_account():
     username = request.form["username"]
     password = request.form["password"]
+    password_2 = request.form["password_2"]
+    if password!= password_2:
+        return render_template("error.html", error="Salasanat eroavat toisistaan")
     role = request.form["role"]
     users.register(username, password, role)
     return redirect("/")
