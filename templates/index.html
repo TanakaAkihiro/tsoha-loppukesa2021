@@ -12,46 +12,71 @@
             <h1>Chatmate</h1>
         </header>
         {% if session.username %}
+        <div class="sub_header">
+            <div class="container">
+                <div class="new_thread">
+                    <a href="/new_thread">Aloita uusi keskustelu</a>
+                </div>
+                <div class="logout">
+                    <a href="/logout">Kirjaudu ulos</a>
+                </div>
+                <div class="search">
+                    <form action="/search_result" method="POST">
+                        <span class="fa fa-search"></span><input type="text" name="query" placeholder="Haku">
+                        <button type="submit">Lähetä</button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="main">
             <div class="container">
-                <div class="sub_header">
-                    
-                    <div class="new_thread">
-                        <a href="/new_thread">Aloita uusi keskustelu</a>
-                    </div>
-                    <div class="logout">
-                        <a href="/logout">Kirjaudu ulos</a>
-                    </div>
-                    <div class="search">
-                        <form action="/search_result" method="POST">
-                            <span class="fa fa-search"></span><input type="text" name="query" placeholder="Haku">
-                            <button type="submit">Lähetä</button>
-                        </form>
-                    </div>
-                </div>
                 {% for thread in threads %}
                 {% if thread.visible %}
-                Aihe: {{thread.topic}} <br>
-                Luotu: {{thread.created_at.strftime("%Y-%m-%d %H:%M:%S")}} <br>
-                Luoja: {{thread.username}} <br>
-                {% for count in message_counts %}
-                {% if count.thread_id == thread.id %}
-                💬: {{count.count}}  
-                {% endif %}
-                {% endfor %}
-                {% for count in visit_counts %}
-                {% if count.thread_id == thread.id %}
-                👁️: {{count.count}} <br>
-                {% endif %}
-                {% endfor %}
-                <a href="/thread/{{thread.id}}">Siirry keskusteluun</a>
-                {% if thread.username == session.username %}
-                | <a href="/edit_thread/{{thread.id}}">Muokkaa keskustelun aihetta</a>
-                {% endif %}
-                {% if thread.username == session.username or session.user_role == 2 %}
-                | <a href="/delete_thread/{{thread.id}}">Poista keskusteluketju</a>
-                {% endif %}
-                <hr>
+                <div class="thread">
+                    <div class="topic">
+                        {{thread.topic}}
+                    </div>
+
+                    <div class="creator">
+                        Luoja: {{thread.username}}
+                    </div>
+                    
+                    {% for count in message_counts %}
+                    {% if count.thread_id == thread.id %}
+                    <div class="comments">
+                        <p><span class="fa fa-comments"></span>: {{count.count}}</p>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% for count in visit_counts %}
+                    {% if count.thread_id == thread.id %}
+                    <div class="views">
+                        <p><span class="fa fa-eye"></span>: {{count.count}}</p>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    <br>
+                    <div class="to_thread">
+                        <a href="/thread/{{thread.id}}">Siirry keskusteluun</a>
+                    </div>
+                    
+                    {% if thread.username == session.username %}
+                    <div class="edit_thread">
+                        | <a href="/edit_thread/{{thread.id}}">Muokkaa keskustelun aihetta</a>
+                    </div>
+                    {% endif %}
+                    
+                    {% if thread.username == session.username or session.user_role == 2 %}
+                    <div class="delete_thread">
+                        | <a href="/delete_thread/{{thread.id}}">Poista keskusteluketju</a>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="created_at">
+                        {{thread.created_at.strftime("%Y-%m-%d %H:%M:%S")}}
+                    </div>
+                </div>
                 {% endif %}
                 {% endfor %}
             </div>
