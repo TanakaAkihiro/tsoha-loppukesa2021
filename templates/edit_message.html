@@ -14,6 +14,7 @@
         <form action="/update_message/{{message.id}}" method="POST">
             <textarea name="content" id="" cols="100" rows="15" required>{{message.content}}</textarea> <br>
             <button type="submit">Valmis</button>
+            <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
         </form>
     </body>
 </html>

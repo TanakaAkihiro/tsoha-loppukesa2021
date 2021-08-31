@@ -14,6 +14,7 @@
         <form action="/update_thread/{{thread.id}}" method="POST">
             <textarea name="topic" id="" cols="100" rows="15" required>{{thread.topic}}</textarea> <br>
             <button type="submit">Valmis</button>
+            <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
         </form>
     </body>
 </html>
