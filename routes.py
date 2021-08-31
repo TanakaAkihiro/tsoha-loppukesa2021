@@ -21,6 +21,10 @@ def create_account():
     password_2 = request.form["password_2"]
     if password!= password_2:
         return render_template("error.html", error="Salasanat eroavat toisistaan")
+    elif 7 > len(username) > 50:
+        return render_template("error.html", error="Käyttäjänimin pituuden tulee olla 8-50 merkin pituinen")
+    elif 7 > len(password) > 100:
+        return render_template("error.html", error="Salasanan pituuden tulee olla 8-100 merkin pituinen")
     role = request.form["role"]
     users.register(username, password, role)
     return redirect("/")
@@ -74,6 +78,7 @@ def edit_thread(thread_id):
 
 @app.route("/update_thread/<int:thread_id>", methods=["GET", "POST"])
 def update_thread(thread_id):
+    users.check_csrf(request.form["csrf_token"])
     topic = request.form["topic"]
     if len(topic) > 100:
         return render_template("error.html", error="Aihe on liian pitkä")
@@ -108,6 +113,7 @@ def edit_message(message_id):
 
 @app.route("/update_message/<int:message_id>", methods=["GET", "POST"])
 def update_message(message_id):
+    users.check_csrf(request.form["csrf_token"])
     content = request.form["content"]
     if len(content) > 5000:
         return render_template("error.html", error="Viesti on liian pitkä")
