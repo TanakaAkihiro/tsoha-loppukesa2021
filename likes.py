@@ -34,17 +34,7 @@ def check_if_liked_before(user_id, message_id):
     return True
 
 def update_like(user_id, message_id):
-    sql = "SELECT * FROM likes WHERE user_id=:user_id AND message_id=:message_id"
-    result = db.session.execute(sql, {"user_id":user_id, "message_id":message_id}).fetchone()
-    if not result.bool:
-        sql = "UPDATE likes SET bool=true WHERE user_id=:user_id AND message_id=:message_id"
-        try:
-            db.session.execute(sql, {"user_id":user_id, "message_id":message_id})
-            db.session.commit()
-            return True
-        except:
-            return False
-    sql = "UPDATE likes SET bool=false WHERE user_id=:user_id AND message_id=:message_id"
+    sql = "UPDATE likes SET bool=not bool WHERE user_id=:user_id AND message_id=:message_id"
     try:
         db.session.execute(sql, {"user_id":user_id, "message_id":message_id})
         db.session.commit()
