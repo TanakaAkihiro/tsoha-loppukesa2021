@@ -78,8 +78,8 @@ header h1{
 }
 
 .liked_like-button button {
-    background-color: blue;
-    color: white;
+    background-color: transparent;
+    color: blue;
 }
 
 .new_account {
@@ -133,9 +133,10 @@ header h1{
     font-size: 20px;
 }
 
-.unliked_like-button button {
-    background-color: lightgray;
-    color: black;
+.unliked_like-button button{
+    background-color: transparent;
+    color: grey;
+    box-shadow: none;
 }
 
 .username {

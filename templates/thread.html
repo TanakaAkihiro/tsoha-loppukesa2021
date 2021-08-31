@@ -5,6 +5,7 @@
         <meta name="viewpoint" content="width=device-width", initial-scale=1>
         <title>Chatmate</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css')}}">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
     <body>
         <header>
@@ -34,13 +35,13 @@
         {% if like.bool %}
         <div class="liked_like-button">
             <form action="/like/{{message.thread_id}}/{{message.id}}">
-                <button type="submit">Tykkää</button>
+                <button type="submit"><span class="fa fa-thumbs-up"></span></button>
             </form>
         </div>
         {% else %}
         <div class="unliked_like-button">
             <form action="/like/{{message.thread_id}}/{{message.id}}">
-                <button type="submit">Tykkää</button>
+                <button type="submit"><span class="fa fa-thumbs-up"></span></button>
             </form>
         </div>
         {% endif %}
