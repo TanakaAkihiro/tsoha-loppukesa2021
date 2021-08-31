@@ -47,6 +47,8 @@ def new_thread():
 def create_thread():
     users.check_csrf(request.form["csrf_token"])
     topic = request.form["topic"]
+    if len(topic) > 100:
+        return render_template("error.html", error="Aihe on liian pitkä")
     if threads.create(session["user_id"], topic):
         return redirect("/")
     return render_template("error.html", error="Uuden keskustelun luominen epäonnistui")
@@ -73,6 +75,8 @@ def edit_thread(thread_id):
 @app.route("/update_thread/<int:thread_id>", methods=["GET", "POST"])
 def update_thread(thread_id):
     topic = request.form["topic"]
+    if len(topic) > 100:
+        return render_template("error.html", error="Aihe on liian pitkä")
     if threads.update(thread_id, topic):
         return redirect("/")
     return render_template("error.html", error="Aiheen muokkaaminen epäonnistui")
@@ -85,6 +89,8 @@ def new_message(thread_id):
 def create_message(thread_id):
     users.check_csrf(request.form["csrf_token"])
     content = request.form["content"]
+    if len(content) > 5000:
+        return render_template("error.html", error="Viesti on liian pitkä")
     if messages.create(session["user_id"], thread_id, content):
         return redirect("/thread/"+str(thread_id))
     return render_template("error.html", error="Uuden viestin lähettäminen epäonnistui")
@@ -103,6 +109,8 @@ def edit_message(message_id):
 @app.route("/update_message/<int:message_id>", methods=["GET", "POST"])
 def update_message(message_id):
     content = request.form["content"]
+    if len(content) > 5000:
+        return render_template("error.html", error="Viesti on liian pitkä")
     if messages.update(message_id, content):
         return redirect("/thread/"+str(messages.get_thread_id(message_id)))
     return render_template("error.html", error="Viestin muokkaaminen epäonnistui")
