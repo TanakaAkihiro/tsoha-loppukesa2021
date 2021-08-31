@@ -4,7 +4,9 @@ import users, threads
 
 def get_list(thread_id):
     sql = """SELECT M.id, M.user_id, M.content, M.created_at, M.visible, T.id as thread_id, U.username 
-        FROM messages M, threads T, users U WHERE M.thread_id=T.id AND M.user_id=U.id AND T.id=:thread_id AND M.visible=true ORDER BY M.id"""
+        FROM messages M, threads T, users U 
+        WHERE M.thread_id=T.id AND M.user_id=U.id AND T.id=:thread_id AND M.visible=true 
+        ORDER BY M.id"""
     result = db.session.execute(sql, {"thread_id":thread_id})
     return result.fetchall()
 
@@ -48,6 +50,8 @@ def get_thread_id(id):
     return result.fetchone().thread_id
 
 def search(query):
-    sql = """SELECT M.id, M.content, M.created_at, U.username, T.topic FROM messages M, users U, threads T 
-        WHERE M.thread_id=T.id AND M.user_id=U.id AND M.content LIKE :query AND M.visible=true AND T.visible=true;"""
+    sql = """SELECT M.id, M.content, M.created_at, U.username, T.topic 
+        FROM messages M, users U, threads T 
+        WHERE M.thread_id=T.id AND M.user_id=U.id AND M.content 
+        LIKE :query AND M.visible=true AND T.visible=true;"""
     return db.session.execute(sql, {"query":"%"+str(query)+"%"}).fetchall()
