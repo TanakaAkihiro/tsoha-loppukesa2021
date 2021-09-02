@@ -27,6 +27,9 @@ header h1{
     padding-top: 30px;
 }
 
+.clear {
+    clear: left;
+}
 .create_button {
     color: green;
     box-sizing: 30px;
@@ -75,11 +78,6 @@ header h1{
     position: relative;
     top:4px;
     box-shadow: none;
-}
-
-.liked_like-button button {
-    background-color: transparent;
-    color: blue;
 }
 
 .new_account {
@@ -133,12 +131,6 @@ header h1{
     font-size: 20px;
 }
 
-.unliked_like-button button{
-    background-color: transparent;
-    color: grey;
-    box-shadow: none;
-}
-
 .username {
     display: flex;
     justify-content: center;
@@ -162,7 +154,7 @@ header h1{
     background-color: rgba(34, 49, 52, 0.6);
 }
 
-.new_thread a, .logout a, .search span, .back_home a{
+.new_thread a, .logout a, .search span, .back_home a, .new_message a{
     text-decoration: none;
     line-height: 50px;
     padding: 0 25px;
@@ -172,7 +164,7 @@ header h1{
     transition: 0.5s;
 }
 
-.new_thread a:hover, .logout a:hover, .back_home a:hover{
+.new_thread a:hover, .logout a:hover, .back_home a:hover, .new_message a:hover{
     background-color: rgba(255, 255, 255, 0.3);
 }
 
@@ -234,4 +226,63 @@ header h1{
 .account_form {
     height: 600px;
     border-radius: 4px;
+}
+
+.thread_topic {
+    text-align: center;
+    font-size: 40px;
+}
+
+.message {
+    border-bottom: 1px solid black;
+    clear: left;
+    position: relative;
+}
+
+.message_sender {
+    font-weight: bold;
+}
+
+.message_content {
+    padding: 15px 30px;
+}
+
+.message_content_text {
+    width: 80%;
+    display: inline-block;
+    overflow-wrap: break-word;
+}
+
+.message_created_at {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.unliked_like-button button{
+    background-color: transparent;
+    color: grey;
+    float: left;
+}
+
+.liked_like-button button {
+    background-color: transparent;
+    color: blue;
+    float: left;
+}
+
+.unliked_like-button, .liked_like-button {
+    float: left;
+}
+
+.like_count {
+    float: left;
+}
+
+.edit_message, .delete_message {
+    float: left;
+}
+
+.delete_message {
+    padding-left: 10px;
 }
