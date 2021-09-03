@@ -17,10 +17,6 @@ Sovellus on keskustelusovellus, jossa käyttäjät pääsevät luomaan keskustel
 * Käyttäjä voi tykätä viestistä.
 * Ylläpitäjä voi lisätä ja poistaa keskustelualueita.
 
-## Huom.
-
-Käyttäjä pystyy muokkaamaan/poistamaan oman keskusteluketjunsa/viestinsä vasta kun hän kirjautuu uudestaan omalle käyttäjälleen.
-
 ## Sovelluksen osoite
 
 https://tsoha-chatm8.herokuapp.com/
