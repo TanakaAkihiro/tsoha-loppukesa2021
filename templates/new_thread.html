@@ -10,11 +10,31 @@
         <header>
             <h1>Chatmate</h1>
         </header>
-        <form action="/create_thread" method="POST">
-            Syötä aihe: <br>
-            <textarea name="topic" cols="30" rows="2" required></textarea> <br>
-            <button type="submit">Luo uusi keskustelu</button>
-            <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
-        </form>
+        {% if session.username %}
+            <div class="sub_header">
+                <div class="container">
+                    <div class="back_home">
+                        <a href="/"><span class="fa fa-home"></span></a>
+                    </div>
+                    <div class="logout">
+                        <a href="/logout">Kirjaudu ulos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="main">
+                <div class="container">
+                    <div class="create_thread">
+                        <p>Syötä aihe:</p>
+                        <form action="/create_thread" method="POST">
+                            <textarea name="topic" cols="60" rows="1" required></textarea>
+                            <div class="create_button">
+                                <button type="submit">Luo uusi keskustelu</button>
+                            </div>
+                            <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </body>
 </html>

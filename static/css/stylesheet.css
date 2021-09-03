@@ -204,6 +204,8 @@ header h1{
 .topic {
     font-weight: bold;
     font-size: 24px;
+    overflow-wrap: break-word;
+    width: 80%;
 }
 
 .to_thread, .edit_thread, .delete_thread, .creator {
@@ -294,4 +296,21 @@ header h1{
 .keyword_text {
     font-weight: normal;
     font-size: 16px;
+}
+
+.create_thread {
+    text-align: center;
+    padding-top: 200px;
+}
+
+.create_thread p {
+    font-size: 30px;
+}
+
+.create_thread textarea {
+    border-radius: 10px;
+    font-size: 20px;
+    resize: none;
+    padding-top: 13px;
+    text-align: center;
 }
