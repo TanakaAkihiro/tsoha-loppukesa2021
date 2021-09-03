@@ -19,7 +19,9 @@ def create_account():
     username = request.form["username"]
     password = request.form["password"]
     password_2 = request.form["password_2"]
-    if password!= password_2:
+    if users.check_if_existed(username):
+        return render_template("error.html", error="Käyttäjänimi on varattu")
+    elif password!= password_2:
         return render_template("error.html", error="Salasanat eroavat toisistaan")
     elif len(username) > 50 or len(username) < 7:
         return render_template("error.html", error="Käyttäjänimen pituuden tulee olla 8-50 merkin pituinen")

@@ -34,6 +34,13 @@ def register(username, password, role):
         return False
     return login(username, password)
 
+def check_if_existed(username):
+    sql = "SELECT COUNT(*) FROM users WHERE username=:username"
+    result = db.session.execute(sql, {"username":username}).fetchone()
+    if result == 0:
+        return False
+    return True
+
 def user_id():
     return session.get("user_id", 0)
 
