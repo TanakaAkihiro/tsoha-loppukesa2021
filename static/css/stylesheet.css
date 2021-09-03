@@ -163,6 +163,10 @@ header h1{
     transition: 0.5s;
 }
 
+.logout a {
+    float: right;
+}
+
 .new_thread a:hover, .logout a:hover, .back_home a:hover, .back_thread a:hover,.new_message a:hover{
     background-color: rgba(255, 255, 255, 0.3);
 }
