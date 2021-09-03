@@ -236,7 +236,7 @@ header h1{
 .message {
     border-bottom: 1px solid black;
     clear: left;
-    position: relative;
+    padding-top: 5px;
 }
 
 .message_sender {
@@ -254,9 +254,8 @@ header h1{
 }
 
 .message_created_at {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    float: right;
+    padding-bottom: 5px;
 }
 
 .unliked_like-button button{
@@ -271,18 +270,15 @@ header h1{
     float: left;
 }
 
-.unliked_like-button, .liked_like-button {
+.unliked_like-button, .liked_like-button, .like_count, .edit_message, .delete_message {
     float: left;
+    padding-bottom: 5px;
+}
+
+.edit_message {
+    padding-right: 10px;
 }
 
 .like_count {
-    float: left;
-}
-
-.edit_message, .delete_message {
-    float: left;
-}
-
-.delete_message {
-    padding-left: 10px;
+    padding: 2px 0 0 5px;
 }
