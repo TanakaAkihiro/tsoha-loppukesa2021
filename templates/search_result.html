@@ -5,25 +5,60 @@
         <meta name="viewpoint" content="width=device-width", initial-scale=1>
         <title>Chatmate</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css')}}">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
     <body>
         <header>
             <h1>Chatmate</h1>
         </header>
+
         {% if session.username %}
-        <a href="/">Palaa kotisivulle</a> |
-        <a href="/logout">Kirjaudu ulos</a>
-        <hr>
-        {% for message in messages %}
-        Aihe: {{message.topic}} <br>
-        Lähettäjä: {{message.username}} <br>
-        {{message.content}} <br>
-        {{message.created_at.strftime("%Y-%m-%d %H:%M:%S")}} <br>
-        {% if message.username == session.username or session.user_role == 2 %}
-        <a href="/delete_message/{{message.id}}">Poista viesti</a>
-        {% endif %}
-        <hr>
-        {% endfor %}
+            <div class="sub_header">
+                <div class="container">
+                    <div class="back_home">
+                        <a href="/"><span class="fa fa-home"></span></a>
+                    </div>
+                    <div class="logout">
+                        <a href="/logout">Kirjaudu ulos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="keyword">
+                    <p class="keyword_text">Hakusana: </p>{{keyword}}
+                </div>
+                <hr>
+                {% for message in messages %}
+                    <div class="message">
+                        <div class="message_topic">
+                            Aihe: <span>{{message.topic}}</span>
+                        </div>
+                        <div class="message_sender">
+                            Lähettäjä: <span>{{message.username}}</span>
+                        </div>
+                        <div class="message_content">
+                            <p class="message_content_text">{{message.content}}</p>
+                        </div>
+                        {% if message.username == session.username %}
+                            <div class="edit_message">
+                                <a href="/edit_message/{{message.id}}">Muokkaa viestiä</a>
+                            </div>
+                            <div class="delete_message">
+                                <a href="/delete_message/{{message.id}}">Poista viesti</a>
+                            </div>
+                        {% endif %}
+                        {% if session.user_role == 2 and message.username != session.username %}
+                            <div class="delete_message">
+                                <a href="/delete_message/{{message.id}}">Poista viesti</a>
+                            </div>
+                        {% endif %}
+                        <div class="message_created_at">
+                            {{message.created_at.strftime("%Y-%m-%d %H:%M:%S")}}
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                {% endfor %}
+            </div>
         {% endif %}
     </body>
 </html>

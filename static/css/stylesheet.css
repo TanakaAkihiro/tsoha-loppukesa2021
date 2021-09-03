@@ -228,7 +228,7 @@ header h1{
     border-radius: 4px;
 }
 
-.thread_topic {
+.thread_topic{
     text-align: center;
     font-size: 40px;
 }
@@ -237,25 +237,27 @@ header h1{
     border-bottom: 1px solid black;
     clear: left;
     padding-top: 5px;
+    position: relative;
 }
 
-.message_sender {
+.message_sender span, .message_topic span {
     font-weight: bold;
 }
 
 .message_content {
-    padding: 15px 30px;
+    padding: 50px 30px;
 }
 
 .message_content_text {
-    width: 80%;
+    width: 100%;
     display: inline-block;
     overflow-wrap: break-word;
 }
 
 .message_created_at {
-    float: right;
-    padding-bottom: 5px;
+    position: absolute;
+    bottom: 3px;
+    right: 0;
 }
 
 .unliked_like-button button{
@@ -281,4 +283,15 @@ header h1{
 
 .like_count {
     padding: 2px 0 0 5px;
+}
+
+.keyword {
+    text-align: center;
+    font-size: 38px;
+    font-weight: bold;
+}
+
+.keyword_text {
+    font-weight: normal;
+    font-size: 16px;
 }
