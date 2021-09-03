@@ -32,7 +32,7 @@ def register(username, password, role):
         db.session.commit()
     except:
         return False
-    return login(username, password)
+    return True
 
 def check_if_existed(username):
     sql = "SELECT COUNT(*) FROM users WHERE username=:username"

@@ -26,7 +26,8 @@ def create_account():
     elif len(password) > 100 or len(password) < 7:
         return render_template("error.html", error="Salasanan pituuden tulee olla 8-100 merkin pituinen")
     role = request.form["role"]
-    users.register(username, password, role)
+    if not users.register(username, password, role):
+        return render_template("error.html", error="Uuden käyttäjän luominen epäonnistui")
     return redirect("/")
 
 @app.route("/login", methods=["POST"])
