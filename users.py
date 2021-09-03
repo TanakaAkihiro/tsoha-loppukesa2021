@@ -37,7 +37,7 @@ def register(username, password, role):
 def check_if_existed(username):
     sql = "SELECT COUNT(*) FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username}).fetchone()
-    if result == 0:
+    if result[0] == 0:
         return False
     return True
 
