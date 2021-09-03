@@ -11,23 +11,23 @@
         <header>
             <h1>Chatmate</h1>
         </header>
-        {% if session.username %}
-            <div class="sub_header">
-                <div class="container">
-                    <div class="back_home">
-                        <a href="/"><span class="fa fa-home"></span></a>
-                    </div>
+        <div class="sub_header">
+            <div class="container">
+                <div class="back_home">
+                    <a href="/"><span class="fa fa-home"></span></a>
+                </div>
+                {% if session.username %}
                     <div class="logout">
                         <a href="/logout">Kirjaudu ulos</a>
                     </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="main">
+            <div class="container">
+                <div class="error">
+                    Virhe: {{error}}
                 </div>
             </div>
-            <div class="main">
-                <div class="container">
-                    <div class="error">
-                        Virhe: {{error}}
-                    </div>
-                </div>
-            </div>
-        {% endif %}
+        </div>
     </body>
