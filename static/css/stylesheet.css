@@ -153,7 +153,7 @@ header h1{
     background-color: rgba(34, 49, 52, 0.6);
 }
 
-.new_thread a, .logout a, .search span, .back_home a, .new_message a{
+.new_thread a, .logout a, .search span, .back_home a, .back_thread a, .new_message a{
     text-decoration: none;
     line-height: 50px;
     padding: 0 25px;
@@ -163,7 +163,7 @@ header h1{
     transition: 0.5s;
 }
 
-.new_thread a:hover, .logout a:hover, .back_home a:hover, .new_message a:hover{
+.new_thread a:hover, .logout a:hover, .back_home a:hover, .back_thread a:hover,.new_message a:hover{
     background-color: rgba(255, 255, 255, 0.3);
 }
 
@@ -302,7 +302,7 @@ header h1{
     padding-top: 200px;
 }
 
-.create_thread p, .update_thread p {
+.create_thread p, .update_thread p, .create_message p, .update_message p {
     font-size: 30px;
 }
 
@@ -312,4 +312,17 @@ header h1{
     resize: none;
     padding-top: 13px;
     text-align: center;
+}
+
+.create_message, .update_message {
+    text-align: center;
+    padding-top: 150px;
+}
+
+.create_message textarea, .update_message textarea {
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+    padding-top: 10px;
+    padding-left: 10px;
 }
