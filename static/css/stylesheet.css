@@ -298,16 +298,16 @@ header h1{
     font-size: 16px;
 }
 
-.create_thread {
+.create_thread, .update_thread {
     text-align: center;
     padding-top: 200px;
 }
 
-.create_thread p {
+.create_thread p, .update_thread p {
     font-size: 30px;
 }
 
-.create_thread textarea {
+.create_thread textarea, .update_thread textarea{
     border-radius: 10px;
     font-size: 20px;
     resize: none;
