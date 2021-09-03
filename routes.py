@@ -125,7 +125,7 @@ def update_message(message_id):
 def search_result():
     query = request.form["query"]
     result = messages.search(query)
-    return render_template("search_result.html", messages=result)
+    return render_template("search_result.html", messages=result, keyword=query)
 
 @app.route("/like/<int:thread_id>/<int:message_id>")
 def like_message(thread_id, message_id):
