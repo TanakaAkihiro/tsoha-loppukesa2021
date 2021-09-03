@@ -21,9 +21,9 @@ def create_account():
     password_2 = request.form["password_2"]
     if password!= password_2:
         return render_template("error.html", error="Salasanat eroavat toisistaan")
-    elif 7 > len(username) > 50:
-        return render_template("error.html", error="Käyttäjänimin pituuden tulee olla 8-50 merkin pituinen")
-    elif 7 > len(password) > 100:
+    elif len(username) > 50 or len(username) < 7:
+        return render_template("error.html", error="Käyttäjänimen pituuden tulee olla 8-50 merkin pituinen")
+    elif len(password) > 100 or len(password) < 7:
         return render_template("error.html", error="Salasanan pituuden tulee olla 8-100 merkin pituinen")
     role = request.form["role"]
     users.register(username, password, role)
