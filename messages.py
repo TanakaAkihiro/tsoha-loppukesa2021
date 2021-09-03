@@ -31,7 +31,9 @@ def delete(id, user_id, user_role):
     return False
 
 def get_content(id):
-    sql = "SELECT id, content, thread_id FROM messages WHERE id=:id"
+    sql = """SELECT M.id, M.content, M.thread_id, T.topic as thread_topic 
+        FROM messages M, threads T 
+        WHERE M.thread_id=T.id AND M.id=:id"""
     result = db.session.execute(sql, {"id":id})
     return result.fetchone()
 
