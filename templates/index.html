@@ -41,21 +41,13 @@
                         Luoja: {{thread.username}}
                     </div>
                     
-                    {% for count in message_counts %}
-                    {% if count.thread_id == thread.id %}
                     <div class="comments">
-                        <p><span class="fa fa-comments"></span>: {{count.count}}</p>
+                        <p><span class="fa fa-comments"></span>: {{thread.message_count}}</p>
                     </div>
-                    {% endif %}
-                    {% endfor %}
 
-                    {% for count in visit_counts %}
-                    {% if count.thread_id == thread.id %}
                     <div class="views">
-                        <p><span class="fa fa-eye"></span>: {{count.count}}</p>
+                        <p><span class="fa fa-eye"></span>: {{thread.view_count}}</p>
                     </div>
-                    {% endif %}
-                    {% endfor %}
                     <br>
                     <div class="to_thread">
                         <a href="/thread/{{thread.id}}">Siirry keskusteluun</a>
