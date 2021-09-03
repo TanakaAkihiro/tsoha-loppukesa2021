@@ -11,20 +11,21 @@
         <header>
             <h1>Chatmate</h1>
         </header>
-        {% if session.username %}
-            <div class="sub_header">
-                <div class="container">
-                    <div class="back_home">
-                        <a href="/"><span class="fa fa-home"></span></a>
-                    </div>
-                    <div class="back_thread">
-                        <a href="/thread/{{message.thread_id}}">Palaa keskusteluun</a>
-                    </div>
-                    <div class="logout">
-                        <a href="/logout">Kirjaudu ulos</a>
-                    </div>
+        <div class="sub_header">
+            <div class="container">
+                <div class="back_home">
+                    <a href="/"><span class="fa fa-home"></span></a>
+                </div>
+                <div class="back_thread">
+                    <a href="/thread/{{message.thread_id}}">Palaa keskusteluun</a>
+                </div>
+                <div class="logout">
+                    <a href="/logout">Kirjaudu ulos</a>
                 </div>
             </div>
+        </div>
+
+        {% if session.username == message.username %}
             <div class="main">
                 <div class="container">
                     <div class="update_message">
