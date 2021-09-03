@@ -40,10 +40,9 @@ header h1{
 
 .error  {
     color: red;
-    margin: auto;
-    max-width: max-content;
+    text-align: center;
     font-size: 50px;
-    padding-top: 50px;
+    padding-top: 200px;
     text-decoration: underline;
 }
 
