@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewpoint" content="width=device-width", initial-scale=1>
+        <title>Chatmate</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css')}}">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <header>
+            <h1>Chatmate</h1>
+        </header>
+        {% block sub_header %}{% endblock %}
+        {% block content %}{% endblock %}
+    </body>
+</html>

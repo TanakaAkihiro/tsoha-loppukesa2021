@@ -1,46 +1,38 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewpoint" content="width=device-width", initial-scale=1>
-        <title>Chatmate</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css')}}">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    </head>
-    <body>
-        <header>
-            <h1>Chatmate</h1>
-        </header>
-        <div class="sub_header">
-            <div class="container">
-                <div class="back_home">
-                    <a href="/"><span class="fa fa-home"></span></a>
-                </div>
-                {% if session.username %}
-                    <div class="logout">
-                        <a href="/logout">Kirjaudu ulos</a>
-                    </div>
+{% extends "layout.html" %}
+{% block sub_header %}
+<div class="sub_header">
+    <div class="container">
+        <div class="back_home">
+            <a href="/"><span class="fa fa-home"></span></a>
+        </div>
+        {% if session.username %}
+            <div class="logout">
+                <a href="/logout">Kirjaudu ulos</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+{% if session.username == user.username %}
+    <div class="main">
+        <div class="container">
+            <div class="heading">
+                <h1>Profiili</h1>
+            </div>
+            <hr>
+            <div class="profile_username">
+                <h1>{{user.username}}</h1>
+            </div>
+            <div class="user_role">
+                {% if user.role == 1 %}
+                    <h1>Käyttäjärooli: <span>Käyttäjä</span></h1>
+                {% else %}
+                    <h1>Käyttäjärooli: <span>Ylläpitäjä</span></h1>
                 {% endif %}
             </div>
         </div>
-        {% if session.username == user.username %}
-            <div class="main">
-                <div class="container">
-                    <div class="heading">
-                        <h1>Profiili</h1>
-                    </div>
-                    <hr>
-                    <div class="profile_username">
-                        <h1>{{user.username}}</h1>
-                    </div>
-                    <div class="user_role">
-                        {% if user.role == 1 %}
-                            <h1>Käyttäjärooli: <span>Käyttäjä</span></h1>
-                        {% else %}
-                            <h1>Käyttäjärooli: <span>Ylläpitäjä</span></h1>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-    </body>
+    </div>
+{% endif %}
+{% endblock %}

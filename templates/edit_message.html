@@ -1,47 +1,39 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewpoint" content="width=device-width", initial-scale=1>
-        <title>Chatmate</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css')}}">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    </head>
-    <body>
-        <header>
-            <h1>Chatmate</h1>
-        </header>
-        <div class="sub_header">
-            <div class="container">
-                <div class="back_home">
-                    <a href="/"><span class="fa fa-home"></span></a>
-                </div>
-                <div class="back_thread">
-                    <a href="/thread/{{message.thread_id}}">Palaa keskusteluun</a>
-                </div>
-                <div class="logout">
-                    <a href="/logout">Kirjaudu ulos</a>
-                </div>
-            </div>
+{% extends "layout.html" %}
+{% block sub_header %}
+<div class="sub_header">
+    <div class="container">
+        <div class="back_home">
+            <a href="/"><span class="fa fa-home"></span></a>
         </div>
-
-        {% if session.username == message.username %}
-            <div class="main">
-                <div class="container">
-                    <div class="update_message">
-                        <h1>{{message.thread_topic}}</h1>
-                        <hr>
-                        <p>Syötä viesti:</p>
-                        <form action="/update_message/{{message.id}}" method="POST">
-                            <textarea name="content" id="" cols="100" rows="15" required>{{message.content}}</textarea> <br>
-                            <div class="create_button">
-                                <button type="submit">Valmis</button>
-                            </div>
-                            <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
-                        </form>
-                    </div>
-                </div>
+        {% if session.username %}
+            <div class="back_thread">
+                <a href="/thread/{{message.thread_id}}">Palaa keskusteluun</a>
+            </div>
+            <div class="logout">
+                <a href="/logout">Kirjaudu ulos</a>
             </div>
         {% endif %}
-    </body>
-</html>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+{% if session.username == message.username %}
+    <div class="main">
+        <div class="container">
+            <div class="update_message">
+                <h1>{{message.thread_topic}}</h1>
+                <hr>
+                <p>Syötä viesti:</p>
+                <form action="/update_message/{{message.id}}" method="POST">
+                    <textarea name="content" id="" cols="100" rows="15" required>{{message.content}}</textarea> <br>
+                    <div class="create_button">
+                        <button type="submit">Valmis</button>
+                    </div>
+                    <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

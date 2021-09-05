@@ -1,93 +1,86 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewpoint" content="width=device-width", initial-scale=1>
-        <title>Chatmate</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css')}}">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    </head>
-    <body>
-        <header>
-            <h1>Chatmate</h1>
-        </header>
+{% extends "layout.html" %}
+{% block sub_header %}
+<div class="sub_header">
+    <div class="container">
+        <div class="back_home">
+            <a href="/"><span class="fa fa-home"></span></a>
+        </div>
         {% if session.username %}
-            <div class="sub_header">
-                <div class="container">
-                    <div class="back_home">
-                        <a href="/"><span class="fa fa-home"></span></a>
-                    </div>
-                    <div class="new_message">
-                        <a href="/new_message/{{thread.id}}">Kirjoita uusi viesti</a>
-                    </div>
-                    <div class="logout">
-                        <a href="/logout">Kirjaudu ulos</a>
-                    </div>
-                </div>
+            <div class="new_message">
+                <a href="/new_message/{{thread.id}}">Kirjoita uusi viesti</a>
             </div>
-            <div class="container">
-                <div class="thread_topic">
-                    <h1>{{thread.topic}}</h1>
-                </div>
-                <hr>
-                {% for message in messages %}
-                    {% if message.visible %}
-                        <div class="message">
-                            <div class="message_sender">
-                                Lähettäjä: <span>{{message.username}}</span>
-                            </div>
-                            <div class="message_content">
-                                <p class="message_content_text">{{message.content}}</p>
-                            </div>
-                            {% for like in likes %}
-                                {% if like.message_id == message.id %}
-                                    {% if like.bool %}
-                                        <div class="liked_like-button">
-                                            <form action="/like/{{message.thread_id}}/{{message.id}}">
-                                                <button type="submit"><span class="fa fa-thumbs-up"></span></button>
-                                            </form>
-                                        </div>
-                                    {% else %}
-                                        <div class="unliked_like-button">
-                                            <form action="/like/{{message.thread_id}}/{{message.id}}">
-                                                <button type="submit"><span class="fa fa-thumbs-up"></span></button>
-                                            </form>
-                                        </div>
-                                    {% endif %}
-                                {% endif %}
-                            {% endfor %}
-                            {% for count in like_counts %}
-                                {% if count.message_id == message.id %}
-                                    <div class="like_count">
-                                        {{count.count}}
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-
-                            {% if message.username == session.username %}
-                                <div class="clear"></div>
-                                <div class="edit_message">
-                                    <a href="/edit_message/{{message.id}}">Muokkaa viestiä</a> |
-                                </div>
-                                
-                                <div class="delete_message">
-                                    <a href="/delete_message/{{message.id}}">Poista viesti</a>
-                                </div>
-                            {% endif %}
-                            {% if session.user_role == 2 and message.username != session.username %}
-                                <div class="clear"></div>
-                                <div class="delete_message">
-                                    <a href="/delete_message/{{message.id}}">Poista viesti</a>
-                                </div>
-                            {% endif %}
-                            <div class="message_created_at">
-                                {{message.created_at.strftime("%Y-%m-%d %H:%M:%S")}}
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+            <div class="logout">
+                <a href="/logout">Kirjaudu ulos</a>
             </div>
         {% endif %}
-    </body>
-</html>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+{% if session.username %}
+    <div class="container">
+        <div class="thread_topic">
+            <h1>{{thread.topic}}</h1>
+        </div>
+        <hr>
+        {% for message in messages %}
+            {% if message.visible %}
+                <div class="message">
+                    <div class="message_sender">
+                        Lähettäjä: <span>{{message.username}}</span>
+                    </div>
+                    <div class="message_content">
+                        <p class="message_content_text">{{message.content}}</p>
+                    </div>
+                    {% for like in likes %}
+                        {% if like.message_id == message.id %}
+                            {% if like.bool %}
+                                <div class="liked_like-button">
+                                    <form action="/like/{{message.thread_id}}/{{message.id}}">
+                                        <button type="submit"><span class="fa fa-thumbs-up"></span></button>
+                                    </form>
+                                </div>
+                            {% else %}
+                                <div class="unliked_like-button">
+                                    <form action="/like/{{message.thread_id}}/{{message.id}}">
+                                        <button type="submit"><span class="fa fa-thumbs-up"></span></button>
+                                    </form>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    {% for count in like_counts %}
+                        {% if count.message_id == message.id %}
+                            <div class="like_count">
+                                {{count.count}}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if message.username == session.username %}
+                        <div class="clear"></div>
+                        <div class="edit_message">
+                            <a href="/edit_message/{{message.id}}">Muokkaa viestiä</a> |
+                        </div>
+                        
+                        <div class="delete_message">
+                            <a href="/delete_message/{{message.id}}">Poista viesti</a>
+                        </div>
+                    {% endif %}
+                    {% if session.user_role == 2 and message.username != session.username %}
+                        <div class="clear"></div>
+                        <div class="delete_message">
+                            <a href="/delete_message/{{message.id}}">Poista viesti</a>
+                        </div>
+                    {% endif %}
+                    <div class="message_created_at">
+                        {{message.created_at.strftime("%Y-%m-%d %H:%M:%S")}}
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

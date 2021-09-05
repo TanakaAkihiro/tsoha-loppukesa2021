@@ -1,47 +1,39 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewpoint" content="width=device-width", initial-scale=1>
-        <title>Chatmate</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css')}}">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    </head>
-    <body>
-        <header>
-            <h1>Chatmate</h1>
-        </header>
+{% extends "layout.html" %}
+{% block sub_header %}
+<div class="sub_header">
+    <div class="container">
+        <div class="back_home">
+            <a href="/"><span class="fa fa-home"></span></a>
+        </div>
         {% if session.username %}
-            <div class="sub_header">
-                <div class="container">
-                    <div class="back_home">
-                        <a href="/"><span class="fa fa-home"></span></a>
-                    </div>
-                    <div class="back_thread">
-                        <a href="/thread/{{thread.id}}">Palaa keskusteluun</a>
-                    </div>
-                    <div class="logout">
-                        <a href="/logout">Kirjaudu ulos</a>
-                    </div>
-                </div>
+            <div class="back_thread">
+                <a href="/thread/{{thread.id}}">Palaa keskusteluun</a>
             </div>
-            <div class="main">
-                <div class="container">
-                    <div class="create_message">
-                        <h1>{{thread.topic}}</h1>
-                        <hr>
-                        <form action="/create_message/{{thread.id}}" method="POST">
-                            <p>Kirjoita uusi viesti: </p>
-                            <textarea name="content" id="" cols="100" rows="15" required></textarea>
-                            <div class="create_button">
-                                <button type="submit">Lähetä viesti</button>
-                            </div>
-                            <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
-                        </form>
-                    </div>
-                </div>
+            <div class="logout">
+                <a href="/logout">Kirjaudu ulos</a>
             </div>
         {% endif %}
-    </body>
-</html>
+    </div>
+</div>
+{% endblock %}
 
+{% block content %}
+{% if session.username %}
+    <div class="main">
+        <div class="container">
+            <div class="create_message">
+                <h1>{{thread.topic}}</h1>
+                <hr>
+                <form action="/create_message/{{thread.id}}" method="POST">
+                    <p>Kirjoita uusi viesti: </p>
+                    <textarea name="content" id="" cols="100" rows="15" required></textarea>
+                    <div class="create_button">
+                        <button type="submit">Lähetä viesti</button>
+                    </div>
+                    <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
