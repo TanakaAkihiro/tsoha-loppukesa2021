@@ -97,9 +97,8 @@ def create_message(thread_id):
     content = request.form["content"]
     if len(content) > 5000:
         return render_template("error.html", error="Viesti on liian pitkä")
-    if messages.create(session["user_id"], thread_id, content):
-        return redirect("/thread/"+str(thread_id))
-    return render_template("error.html", error="Uuden viestin lähettäminen epäonnistui")
+    messages.create(session["user_id"], thread_id, content)
+    return redirect("/thread/"+str(thread_id))
 
 @app.route("/delete_message/<int:message_id>", methods=["GET", "POST"])
 def delete_message(message_id):
