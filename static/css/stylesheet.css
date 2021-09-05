@@ -201,7 +201,6 @@ header h1{
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
-    height: 70px;
 }
 
 .topic {
@@ -222,6 +221,10 @@ header h1{
 
 .created_at, .views {
     float: right;
+}
+
+.to_thread, .edit_thread, .delete_thread, .created_at {
+    padding-bottom: 5px;
 }
 
 .login_form {
