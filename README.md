@@ -2,7 +2,9 @@
 
 Sovellus on keskustelusovellus, jossa käyttäjät pääsevät luomaan keskusteluketjuja, joilla on oma aihe. Ketjuihin voi lisätä kommentteja ja niitä voi tykätä tykkäys-painikkeella. Käyttäjätyyppejä ovat ylläpitäjä sekä käyttäjä.
 
+## Sovelluksen osoite
 
+https://tsoha-chatm8.herokuapp.com/
 
 ## Sovelluksen ominaisuuksia:
 
@@ -17,6 +19,10 @@ Sovellus on keskustelusovellus, jossa käyttäjät pääsevät luomaan keskustel
 * Käyttäjä voi tykätä viestistä.
 * Ylläpitäjä voi lisätä ja poistaa keskustelualueita.
 
-## Sovelluksen osoite
+## Kehitysideoita
 
-https://tsoha-chatm8.herokuapp.com/
+* Uusi käyttäjärooli, jolla on ylläpitäjän ominaisuudet tietyissä keskusteluketjuissa
+* Uuden ylläpitäjän luodessa vaaditaan jokin salasana/koodi
+* Profiilissa salasanan vaihtaminen
+* Yksityisiä keskusteluketjuja, jonne on vain rajatuilla käyttäjillä pääsyoikeus
+
