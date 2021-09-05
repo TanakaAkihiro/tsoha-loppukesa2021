@@ -31,12 +31,8 @@ def get_list():
 
 def create(user_id, topic):
     sql = """INSERT INTO threads (user_id, topic, created_at, visible) VALUES (:user_id, :topic, NOW(), true)"""
-    try:
-        db.session.execute(sql, {"user_id":user_id, "topic":topic})
-        db.session.commit()
-    except:
-        return False
-    return True
+    db.session.execute(sql, {"user_id":user_id, "topic":topic})
+    db.session.commit()
 
 def delete(thread_id, user_id, user_role):
     sql = "SELECT user_id FROM threads WHERE id=:id"
@@ -57,9 +53,5 @@ def get_topic(thread_id):
 
 def update(thread_id, topic):
     sql = "UPDATE threads SET topic=:topic WHERE id=:id"
-    try:
-        db.session.execute(sql, {"id":thread_id, "topic":topic})
-        db.session.commit()
-        return True
-    except:
-        return False
+    db.session.execute(sql, {"id":thread_id, "topic":topic})
+    db.session.commit()

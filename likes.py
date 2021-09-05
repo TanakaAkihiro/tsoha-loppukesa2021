@@ -18,12 +18,8 @@ def get_list(user_id):
 
 def like_message(user_id, message_id):
     sql = "INSERT INTO likes (user_id, message_id, bool) VALUES (:user_id, :message_id, true)"
-    try:
-        db.session.execute(sql, {"user_id":user_id, "message_id":message_id})
-        db.session.commit()
-    except:
-        return False
-    return True
+    db.session.execute(sql, {"user_id":user_id, "message_id":message_id})
+    db.session.commit()
 
 def check_if_liked_before(user_id, message_id):
     sql = "SELECT * FROM likes WHERE user_id=:user_id AND message_id=:message_id"
@@ -34,9 +30,5 @@ def check_if_liked_before(user_id, message_id):
 
 def update_like(user_id, message_id):
     sql = "UPDATE likes SET bool=not bool WHERE user_id=:user_id AND message_id=:message_id"
-    try:
-        db.session.execute(sql, {"user_id":user_id, "message_id":message_id})
-        db.session.commit()
-        return True
-    except:
-        return False
+    db.session.execute(sql, {"user_id":user_id, "message_id":message_id})
+    db.session.commit()

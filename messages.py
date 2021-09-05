@@ -12,12 +12,8 @@ def get_list(thread_id):
 def create(user_id, thread_id, content):
     sql = """INSERT INTO messages (user_id, thread_id, content, created_at, visible)
         VALUES (:user_id, :thread_id, :content, NOW(), true)"""
-    try:
-        db.session.execute(sql, {"user_id":user_id, "thread_id":thread_id, "content":content})
-        db.session.commit()
-    except:
-        return False
-    return True
+    db.session.execute(sql, {"user_id":user_id, "thread_id":thread_id, "content":content})
+    db.session.commit()
 
 def delete(message_id, user_id, user_role):
     sql = "SELECT user_id FROM messages WHERE id=:id"
@@ -38,12 +34,8 @@ def get_content(message_id):
 
 def update(message_id, content):
     sql = "UPDATE messages SET content=:content WHERE id=:id"
-    try:
-        db.session.execute(sql, {"id":message_id, "content":content})
-        db.session.commit()
-        return True
-    except:
-        return False
+    db.session.execute(sql, {"id":message_id, "content":content})
+    db.session.commit()
 
 def get_thread_id(message_id):
     sql = "SELECT thread_id FROM messages WHERE id=:id"

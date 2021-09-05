@@ -29,8 +29,7 @@ def create_account():
     if len(password) > 100 or len(password) < 7:
         return render_template("error.html", error="Salasanan pituuden tulee olla 8-100 merkin pituinen")
     role = request.form["role"]
-    if not users.register(username, password, role):
-        return render_template("error.html", error="Uuden käyttäjän luominen epäonnistui")
+    users.register(username, password, role)
     return redirect("/")
 
 @app.route("/login", methods=["POST"])
@@ -57,9 +56,8 @@ def create_thread():
     topic = request.form["topic"]
     if len(topic) > 100:
         return render_template("error.html", error="Aihe on liian pitkä")
-    if threads.create(session["user_id"], topic):
-        return redirect("/")
-    return render_template("error.html", error="Uuden keskustelun luominen epäonnistui")
+    threads.create(session["user_id"], topic)
+    return redirect("/")
 
 @app.route("/delete_thread/<int:thread_id>", methods=["GET", "POST"])
 def delete_thread(thread_id):
@@ -86,9 +84,8 @@ def update_thread(thread_id):
     topic = request.form["topic"]
     if len(topic) > 100:
         return render_template("error.html", error="Aihe on liian pitkä")
-    if threads.update(thread_id, topic):
-        return redirect("/")
-    return render_template("error.html", error="Aiheen muokkaaminen epäonnistui")
+    threads.update(thread_id, topic)
+    return redirect("/")
 
 @app.route("/new_message/<int:thread_id>")
 def new_message(thread_id):
@@ -121,9 +118,8 @@ def update_message(message_id):
     content = request.form["content"]
     if len(content) > 5000:
         return render_template("error.html", error="Viesti on liian pitkä")
-    if messages.update(message_id, content):
-        return redirect("/thread/"+str(messages.get_thread_id(message_id)))
-    return render_template("error.html", error="Viestin muokkaaminen epäonnistui")
+    messages.update(message_id, content)
+    return redirect("/thread/"+str(messages.get_thread_id(message_id)))
 
 @app.route("/search_result", methods=["POST"])
 def search_result():
@@ -136,9 +132,8 @@ def like_message(thread_id, message_id):
     if not likes.check_if_liked_before(session["user_id"], message_id):
         likes.like_message(session["user_id"], message_id)
         return redirect("/thread/"+str(thread_id))
-    if likes.update_like(session["user_id"], message_id):
-        return redirect("/thread/"+str(thread_id))
-    return render_template("error.html", error="Tykkääminen/tykkäyksen poistaminen epäonnistui")
+    likes.update_like(session["user_id"], message_id)
+    return redirect("/thread/"+str(thread_id))
 
 @app.route("/profile")
 def profile():
