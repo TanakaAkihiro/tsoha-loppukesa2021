@@ -1,8 +1,7 @@
-from db import db
-from flask import abort, request, session
-from werkzeug.security import check_password_hash, generate_password_hash
 import os
-
+from flask import abort, session
+from werkzeug.security import check_password_hash, generate_password_hash
+from db import db
 
 def login(username, password):
     sql = "SELECT password, id, role FROM users WHERE username=:username"
@@ -47,7 +46,7 @@ def user_id():
 def require_role(role):
     if role > session.get("user_role", 0):
         abort(403)
-    
+
 def check_csrf(csrf):
     if session["csrf_token"] != csrf:
         abort(403)

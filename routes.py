@@ -1,12 +1,15 @@
-from logging import error
-from app import app
 from flask import render_template, request, redirect, session
-import users, threads, messages, visits, likes
+from app import app
+import users
+import threads
+import messages
+import visits
+import likes
 
 @app.route("/")
 def index():
-    list = threads.get_list()
-    return render_template("index.html", threads=list)
+    thread_list = threads.get_list()
+    return render_template("index.html", threads=thread_list)
 
 @app.route("/new_account")
 def new_account():
@@ -19,11 +22,11 @@ def create_account():
     password_2 = request.form["password_2"]
     if users.check_if_existed(username):
         return render_template("error.html", error="Käyttäjänimi on varattu")
-    elif password!= password_2:
+    if password!= password_2:
         return render_template("error.html", error="Salasanat eroavat toisistaan")
-    elif len(username) > 50 or len(username) < 7:
+    if len(username) > 50 or len(username) < 7:
         return render_template("error.html", error="Käyttäjänimen pituuden tulee olla 8-50 merkin pituinen")
-    elif len(password) > 100 or len(password) < 7:
+    if len(password) > 100 or len(password) < 7:
         return render_template("error.html", error="Salasanan pituuden tulee olla 8-100 merkin pituinen")
     role = request.form["role"]
     if not users.register(username, password, role):
@@ -58,24 +61,24 @@ def create_thread():
         return redirect("/")
     return render_template("error.html", error="Uuden keskustelun luominen epäonnistui")
 
-@app.route("/delete_thread/<int:id>", methods=["GET", "POST"])
-def delete_thread(id):
-    if threads.delete(id, session["user_id"], session["user_role"]):
+@app.route("/delete_thread/<int:thread_id>", methods=["GET", "POST"])
+def delete_thread(thread_id):
+    if threads.delete(thread_id, session["user_id"], session["user_role"]):
         return redirect("/")
     return render_template("error.html", error="Keskusteluketjun poistaminen epäonnistui")
 
-@app.route("/thread/<int:id>")
-def thread(id):
-    message_list = messages.get_list(id)
-    like_counts = likes.get_counts(id)
+@app.route("/thread/<int:thread_id>")
+def thread(thread_id):
+    message_list = messages.get_list(thread_id)
+    like_counts = likes.get_counts(thread_id)
     like_list = likes.get_list(session["user_id"])
-    visits.add_visit(id)
-    return render_template("thread.html", messages=message_list, like_counts=like_counts, likes=like_list, thread=threads.topic(id))
+    visits.add_visit(thread_id)
+    return render_template("thread.html", messages=message_list, like_counts=like_counts, likes=like_list, thread=threads.get_topic(thread_id))
 
 @app.route("/edit_thread/<int:thread_id>")
 def edit_thread(thread_id):
-    thread = threads.topic(thread_id)
-    return render_template("edit_thread.html", thread=thread)
+    thread_topic = threads.get_topic(thread_id)
+    return render_template("edit_thread.html", thread=thread_topic)
 
 @app.route("/update_thread/<int:thread_id>", methods=["GET", "POST"])
 def update_thread(thread_id):
@@ -89,7 +92,7 @@ def update_thread(thread_id):
 
 @app.route("/new_message/<int:thread_id>")
 def new_message(thread_id):
-    return render_template("new_message.html", thread=threads.topic(thread_id))
+    return render_template("new_message.html", thread=threads.get_topic(thread_id))
 
 @app.route("/create_message/<int:thread_id>", methods=["POST"])
 def create_message(thread_id):
@@ -101,10 +104,10 @@ def create_message(thread_id):
         return redirect("/thread/"+str(thread_id))
     return render_template("error.html", error="Uuden viestin lähettäminen epäonnistui")
 
-@app.route("/delete_message/<int:id>", methods=["GET", "POST"])
-def delete_message(id):
-    if messages.delete(id, session["user_id"], session["user_role"]):
-        return redirect("/thread/"+str(messages.get_thread_id(id)))
+@app.route("/delete_message/<int:message_id>", methods=["GET", "POST"])
+def delete_message(message_id):
+    if messages.delete(message_id, session["user_id"], session["user_role"]):
+        return redirect("/thread/"+str(messages.get_thread_id(message_id)))
     return render_template("error.html", error="Viestin poistaminen epäonnistui")
 
 @app.route("/edit_message/<int:message_id>")
@@ -131,10 +134,8 @@ def search_result():
 @app.route("/like/<int:thread_id>/<int:message_id>")
 def like_message(thread_id, message_id):
     if not likes.check_if_liked_before(session["user_id"], message_id):
-        likes.like_message(session["user_id"],message_id)
+        likes.like_message(session["user_id"], message_id)
         return redirect("/thread/"+str(thread_id))
-    else:
-        if likes.update_like(session["user_id"], message_id):
-            return redirect("/thread/"+str(thread_id))
-        else:
-            return render_template("error.html", error="Tykkääminen/tykkäyksen poistaminen epäonnistui")
+    if likes.update_like(session["user_id"], message_id):
+        return redirect("/thread/"+str(thread_id))
+    return render_template("error.html", error="Tykkääminen/tykkäyksen poistaminen epäonnistui")

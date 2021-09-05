@@ -30,8 +30,8 @@ def delete(message_id, user_id, user_role):
     return False
 
 def get_content(message_id):
-    sql = """SELECT M.id, M.content, M.thread_id, T.topic as thread_topic, U.username 
-        FROM messages M, threads T, users U 
+    sql = """SELECT M.id, M.content, M.thread_id, T.topic as thread_topic, U.username
+        FROM messages M, threads T, users U
         WHERE M.thread_id=T.id AND M.user_id=U.id AND M.id=:id"""
     result = db.session.execute(sql, {"id":message_id})
     return result.fetchone()
@@ -51,9 +51,9 @@ def get_thread_id(message_id):
     return result.fetchone().thread_id
 
 def search(query):
-    sql = """SELECT M.id, M.content, M.created_at, U.username, T.topic 
-        FROM messages M, users U, threads T 
-        WHERE M.thread_id=T.id AND M.user_id=U.id AND M.content 
+    sql = """SELECT M.id, M.content, M.created_at, U.username, T.topic
+        FROM messages M, users U, threads T
+        WHERE M.thread_id=T.id AND M.user_id=U.id AND M.content
         LIKE :query AND M.visible=true AND T.visible=true;"""
     return db.session.execute(sql, {"query":"%"+str(query)+"%"}).fetchall()
     
