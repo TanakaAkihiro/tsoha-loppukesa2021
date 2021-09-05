@@ -24,7 +24,7 @@ def delete(message_id, user_id, user_role):
     result = db.session.execute(sql, {"id":message_id})
     if result.fetchone().user_id == user_id or user_role == 2:
         sql = "UPDATE messages SET visible = false WHERE id=:id"
-        db.session.execute(sql, {"id":id})
+        db.session.execute(sql, {"id":message_id})
         db.session.commit()
         return True
     return False

@@ -43,7 +43,7 @@ def delete(thread_id, user_id, user_role):
     result = db.session.execute(sql, {"id":thread_id})
     if result.fetchone().user_id == user_id or user_role == 2:
         sql = "UPDATE threads SET visible = false WHERE id=:id"
-        db.session.execute(sql, {"id":id})
+        db.session.execute(sql, {"id":thread_id})
         db.session.commit()
         return True
     return False
