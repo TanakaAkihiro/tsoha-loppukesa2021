@@ -153,7 +153,7 @@ header h1{
     background-color: rgba(34, 49, 52, 0.6);
 }
 
-.new_thread a, .logout a, .search span, .back_home a, .back_thread a, .new_message a{
+.new_thread a, .logout a, .search span, .back_home a, .back_thread a, .new_message a, .profile a{
     text-decoration: none;
     line-height: 50px;
     padding: 0 25px;
@@ -163,11 +163,11 @@ header h1{
     transition: 0.5s;
 }
 
-.logout a {
+.profile a, .logout a {
     float: right;
 }
 
-.new_thread a:hover, .logout a:hover, .back_home a:hover, .back_thread a:hover,.new_message a:hover{
+.new_thread a:hover, .logout a:hover, .back_home a:hover, .back_thread a:hover,.new_message a:hover, .profile a:hover{
     background-color: rgba(255, 255, 255, 0.3);
 }
 
@@ -329,4 +329,19 @@ header h1{
     resize: none;
     padding-top: 10px;
     padding-left: 10px;
+}
+
+.heading {
+    text-align: center;
+}
+
+.profile_username {
+    text-align: center;
+    font-size: 40px;
+}
+
+.user_role {
+    text-align: center;
+    font-size: 20px;
+    padding-top: 100px;
 }

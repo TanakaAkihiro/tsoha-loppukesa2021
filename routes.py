@@ -139,3 +139,8 @@ def like_message(thread_id, message_id):
     if likes.update_like(session["user_id"], message_id):
         return redirect("/thread/"+str(thread_id))
     return render_template("error.html", error="Tykkääminen/tykkäyksen poistaminen epäonnistui")
+
+@app.route("/profile")
+def profile():
+    user_info = users.get_info(session["user_id"])
+    return render_template("profile.html", user=user_info)

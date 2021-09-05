@@ -40,6 +40,10 @@ def check_if_existed(username):
         return False
     return True
 
+def get_info(user_id):
+    sql = "SELECT username, role FROM users WHERE id=:user_id"
+    return db.session.execute(sql, {"user_id":user_id}).fetchone()
+
 def user_id():
     return session.get("user_id", 0)
 
